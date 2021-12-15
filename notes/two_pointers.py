@@ -17,6 +17,7 @@ def count_interval_sum(data, sum):
 
 data = [1,2,3,2,5]
 count_interval_sum(data, 5)
+
 # %% 정렬되어 있는 두 리스트의 합집합
 
 def union_of_two_sorted_list(arr1, arr2):
@@ -41,4 +42,3 @@ arr1 = [1,3,5]
 arr2 = [2,4,6,8]
 union_of_two_sorted_list(arr1, arr2)
 
-# %%
