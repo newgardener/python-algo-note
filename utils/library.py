@@ -74,7 +74,7 @@ print(count_by_range(a, 4, 4))
 # 값이 [-1, 3] 범위에 있는 데이터 개수 출력
 print(count_by_range(a, -1, 3))
     
-# %% collections
+# %% collections (1)
 # dequeue - 첫번째 원소 제거 (popleft()), 마지막 원소 제거 (pop()), 첫번째 인덱스에 x 삽입 (appendleft(x)), 마지막 인덱스에 x 삽입 (append(x))
 
 from collections import deque
@@ -90,6 +90,24 @@ print(list(data))
 counter = Counter(['red', 'blue', 'red', 'green', 'blue', 'blue'])
 print(counter)
 print(counter['blue'])
+print(counter.most_common(2)) # Counter 객체에서 빈도수가 가장 높은 top 2 
 print(dict(counter))
+
+# %% collections (2)
+
+from collections import defaultdict
+from collections import OrderedDict
+
+dict = defaultdict(int)
+# 존재하지 않는 key에 대해서 KeyError를 발생시키지 않고 default 0을 기준으로 1을 더한 값을 value로
+dict['A'] = 5
+dict['B'] = 10
+dict['C'] += 1
+
+for k, v in dict.items():
+    print(k, v)
+    
+ordered_dict = OrderedDict({'banana': 3, 'apple': 2, 'pear': 1, 'orange': 2})
+print(ordered_dict)
 
 # %%
