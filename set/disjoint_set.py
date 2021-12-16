@@ -21,10 +21,17 @@ parent = [0] * (v + 1)
 for i in range(1, v+1):
     parent[i] = i
 
+#  Cycle 발생 여부 체크
+cycle = False  
+
 # union 연산 수행
 for i in range(e):
     a, b = map(int, input().split())
-    union_parent(parent, a, b)
+    if find_parent(parent, a) == find_parent(parent, b):
+        cycle = True
+        break
+    else:
+        union_parent(parent, a, b)
     
 # 각 원소가 속한 집합 
 print('각 원소가 속한 집합: ', end='')
