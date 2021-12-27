@@ -111,3 +111,24 @@ ordered_dict = OrderedDict({'banana': 3, 'apple': 2, 'pear': 1, 'orange': 2})
 print(ordered_dict)
 
 # %%
+from collections import OrderedDict
+
+ordered_dict = OrderedDict({'x': 100, 'y': 200, 'z': 300})
+print(ordered_dict)
+
+# udpate
+ordered_dict.update({'d': 400, 'e': 500})
+print(ordered_dict) 
+
+# popitem
+lifo_popped = ordered_dict.popitem(last=True)
+print(lifo_popped, ordered_dict)
+
+# move_to_end(key, last)
+ordered_dict.move_to_end('x', last=True)
+print(ordered_dict)
+
+
+
+
+# %%
