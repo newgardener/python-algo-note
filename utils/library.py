@@ -19,7 +19,7 @@ print(data)
 
 # %% itertools
 
-from itertools import permutations
+from itertools import count, permutations
 from itertools import combinations
 from itertools import product
 
@@ -129,6 +129,53 @@ ordered_dict.move_to_end('x', last=True)
 print(ordered_dict)
 
 
+# %% lambda
+sum = lambda a, b: a + b
+sum(3,4)
 
+# %% map
+li = [1,2,3]
+result = list(map(lambda x: x**2, li))
+print(result)
+
+el = [-3, -2, 0, 6, 8]
+print(['양수' if i > 0 else ('음수' if i < 0 else 0) for i in el])
+print(list(map(lambda i: '양수' if i > 0 else ('음수' if i < 0 else 0), el)))
+
+# %% filter
+li = [-2, -3, 5, 6]
+list(filter(lambda x: x > 0, li))
+# %% reduce
+from functools import reduce
+
+# reduce를 활용해 리스트의 합 구하기
+acc = reduce(lambda x, y: x+y, [1, 2, 3, 4, 5])
+print(acc) # ((((1+2)+3)+4)+5)
+
+# reduce를 활용해 최대값 구하기
+max_elem = reduce(lambda a, b: a if a > b else b, [10, 3, 5, 2, 1, 9])
+print(max_elem)
+
+# reduce를 이용해 문자 개수 세기
+data = ['a', 'a', 'a', 'b', 'b', 'c', 'c', 'c']
+data_counted = reduce(lambda a, b: a.update({b: a.get(b, 0) + 1}) or a, data, {})
+print(data_counted)
+
+# reduce를 활용한 data-grouping
+def names_by_sex(acc, cur):
+    sex = cur["sex"]
+    if sex not in acc:
+        acc[sex] = []
+    acc[sex].append(cur["name"])
+    return acc
+
+users = [{'mail': 'gregorythomas@gmail.com', 'name': 'Brett Holland', 'sex': 'M', 'age': 73},
+         {'mail': 'hintoncynthia@hotmail.com', 'name': 'Madison Martinez', 'sex': 'F', 'age': 29},
+         {'mail': 'wwagner@gmail.com', 'name': 'Michael Jenkins', 'sex': 'M', 'age': 51},
+         {'mail': 'daniel79@gmail.com', 'name': 'Karen Rodriguez', 'sex': 'F', 'age': 32},
+         {'mail': 'ujackson@gmail.com', 'name': 'Amber Rhodes', 'sex': 'F', 'age': 42}]
+
+grouped_by_sex = reduce(names_by_sex, users, {})
+print(grouped_by_sex)
 
 # %%
