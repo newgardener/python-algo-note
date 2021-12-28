@@ -32,25 +32,6 @@ print(result_permute)
 print(result_combi)
 print(result_product)
 
-# %% heapq
-
-import heapq
-
-def heapsort(iterable):
-    h = []
-    result = []
-    for value in iterable:
-        # 오름차순 정렬
-        heapq.heappush(h, value)
-        # 내림차순 정렬
-        # heapq.heappush(h, -value)
-    for i in range(len(h)):
-        result.append(heapq.heappop(h))
-    return result
-
-result = heapsort([1,3,5,7,9,2,4,6,8,0])
-print(result)
-
 # %% bisect
 # 정렬된 배열에서 특정한 원소를 찾아야 할 때 매우 효과적
 
