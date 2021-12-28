@@ -62,4 +62,26 @@ def minWindow(S, T):
 
 print(minWindow(S,T))
             
+# %% 가장 긴 반복 문자 대체
+from collections import Counter
+
+s = "AAABC"
+k = 2
+
+def characterReplacement(s, k):
+    left = 0
+    counts = Counter()
+
+    for right in range(1, len(s) + 1):
+        counts[s[right-1]] += 1
+        # 가장 많이 등장하는 문자 개수
+        max_char_n = counts.most_common(1)[0][1]
+        # k 초과시 왼쪽 포인터 이동
+        if right - left - max_char_n > k:
+            counts[s[left]] -= 1
+            left += 1
+            
+    return right - left
+
+print(characterReplacement(s, k))
 # %%
