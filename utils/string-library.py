@@ -1,4 +1,4 @@
-#%% isalpha, isalnum
+# %% isalpha, isalnum
 
 """
 isalpha
@@ -13,15 +13,15 @@ text1 = "check me"
 text2 = "123456"
 text3 = "안녕하세요2"
 
-#isalpha()
-print(text1.isalpha()) #False
-print(text2.isalpha()) #False
-print(text3.isalpha()) #False
+# isalpha()
+print(text1.isalpha())  # False
+print(text2.isalpha())  # False
+print(text3.isalpha())  # False
 
-#isalnum()
-print(text1.isalnum()) #False
-print(text2.isalnum()) #True
-print(text3.isalnum()) #True
+# isalnum()
+print(text1.isalnum())  # False
+print(text2.isalnum())  # True
+print(text3.isalnum())  # True
 # %% isdigit, isnumeric, isdecimal
 
 """
@@ -34,12 +34,12 @@ isdecimal
 : 문자열이 int로 변환 가능한 문자로 구성되었을 때 True 반환
 """
 
-print("3²".isnumeric()) #True
-print("3²".isdigit()) #True
-print("3²".isdecimal()) #False
+print("3²".isnumeric())  # True
+print("3²".isdigit())  # True
+print("3²".isdecimal())  # False
 
-print("½".isnumeric()) #True
-print("½".isdigit()) #False
-print("½".isdecimal()) #False
+print("½".isnumeric())  # True
+print("½".isdigit())  # False
+print("½".isdecimal())  # False
 
 # %%

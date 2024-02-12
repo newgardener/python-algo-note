@@ -7,5 +7,5 @@ for i in range(len(array)):
 
 for i in range(len(count)):
     for j in range(count[i]):
-        # 등장한 횟수만큼 프린트 
-        print(i, end=' ') 
+        # 등장한 횟수만큼 프린트
+        print(i, end=" ")

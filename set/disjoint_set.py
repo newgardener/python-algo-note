@@ -2,9 +2,10 @@
 def find_parent(parent, x):
     # 루트 노드가 아니라면, 루트 노드를 찾을 때까지 재귀적으로 호출
     if parent[x] != x:
-        # path compression 적용 
+        # path compression 적용
         parent[x] = find_parent(parent, parent[x])
     return parent[x]
+
 
 # 두 원소가 속한 집합 합치기
 def union_parent(parent, a, b):
@@ -15,14 +16,15 @@ def union_parent(parent, a, b):
     else:
         parent[a] = b
 
+
 v, e = map(int, input().split())
 parent = [0] * (v + 1)
 
-for i in range(1, v+1):
+for i in range(1, v + 1):
     parent[i] = i
 
 #  Cycle 발생 여부 체크
-cycle = False  
+cycle = False
 
 # union 연산 수행
 for i in range(e):
@@ -32,19 +34,15 @@ for i in range(e):
         break
     else:
         union_parent(parent, a, b)
-    
-# 각 원소가 속한 집합 
-print('각 원소가 속한 집합: ', end='')
-for i in range(1, v+1):
-    print(find_parent(parent, i), end=' ')
+
+# 각 원소가 속한 집합
+print("각 원소가 속한 집합: ", end="")
+for i in range(1, v + 1):
+    print(find_parent(parent, i), end=" ")
 
 print()
 
-#  부모 테이블 내용 출력 
-print('부모 테이블: ', end='')
-for i in range(1, v+1):
-    print(parent[i], end=' ')
-
-
-
-
+#  부모 테이블 내용 출력
+print("부모 테이블: ", end="")
+for i in range(1, v + 1):
+    print(parent[i], end=" ")

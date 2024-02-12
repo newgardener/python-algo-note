@@ -1,4 +1,4 @@
-#%% solution 1
+# %% solution 1
 import copy
 
 people = [[7, 0], [4, 4], [7, 1], [5, 0], [6, 1], [5, 2]]
@@ -11,7 +11,7 @@ for person in people:
 
 print(result)
 
-#%% solution 2 - using heap (priority queue)
+# %% solution 2 - using heap (priority queue)
 import heapq
 
 heap = []

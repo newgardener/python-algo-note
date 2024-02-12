@@ -1,5 +1,6 @@
 T = [73, 74, 75, 71, 69, 72, 76, 73]
 
+
 def dailyTemperature(T):
     answer = [0] * len(T)
     stack = []
@@ -9,5 +10,6 @@ def dailyTemperature(T):
             answer[last] = i - last
         stack.append(i)
     return answer
+
 
 print(dailyTemperature(T))

@@ -1,7 +1,5 @@
 def removeDuplicateLetters(s):
     for char in sorted(s):
-        suffix = s[s.index(char):]
+        suffix = s[s.index(char) :]
         if set(s) == set(suffix):
-            return char + removeDuplicateLetters(suffix.replace(char, ''))
-
-    
+            return char + removeDuplicateLetters(suffix.replace(char, ""))

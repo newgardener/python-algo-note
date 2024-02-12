@@ -21,15 +21,15 @@ def encryption(sentence, keyword, skips):
                 inserted[pos].append(char)
         break
 
-    answer = ''
-    answer += ''.join(front)
+    answer = ""
+    answer += "".join(front)
     for i in range(len(sentence)):
-        answer += ''.join(sentence[i])
+        answer += "".join(sentence[i])
         if len(inserted[i]):
-            answer += ''.join(inserted[i])
-    
+            answer += "".join(inserted[i])
+
     return answer
 
-print(encryption('abcde fghi', 'axyz', [3, 9, 0, 1]))
-print(encryption('i love coding', 'mask', [0, 0, 3, 2, 3, 4]))
-        
+
+print(encryption("abcde fghi", "axyz", [3, 9, 0, 1]))
+print(encryption("i love coding", "mask", [0, 0, 3, 2, 3, 4]))

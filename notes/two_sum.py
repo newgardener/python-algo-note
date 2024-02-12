@@ -1,5 +1,6 @@
-#%% two_sum solution 1
+# %% two_sum solution 1
 # this solution is only applicable to the sorted array
+
 
 def two_sum(data, sum):
     left, right = 0, len(data) - 1
@@ -12,14 +13,13 @@ def two_sum(data, sum):
             return [left, right]
 
 
-#%% two_sum solution 2
+# %% two_sum solution 2
+
 
 def two_sum(data, sum):
     nums_map = {}
-    
+
     for i, num in enumerate(data):
-        if sum-num in nums_map:
-            return [nums_map[sum-num], i]
+        if sum - num in nums_map:
+            return [nums_map[sum - num], i]
         nums_map[num] = i
-
-

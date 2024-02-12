@@ -1,4 +1,4 @@
-n, m = map(int, input().split()) # n(row), m(column)
+n, m = map(int, input().split())  # n(row), m(column)
 x, y, direction = map(int, input().split())
 
 game_map = []
@@ -31,7 +31,7 @@ while True:
         continue
     else:
         turn_count += 1
-    
+
     if turn_count == 4:
         nx = x - dx[direction]
         ny = y - dy[direction]
@@ -43,7 +43,3 @@ while True:
             break
 
 print(count)
-
-
-
-
