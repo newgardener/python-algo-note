@@ -97,7 +97,7 @@ from collections import OrderedDict
 ordered_dict = OrderedDict({'x': 100, 'y': 200, 'z': 300})
 print(ordered_dict)
 
-# udpate
+# update
 ordered_dict.update({'d': 400, 'e': 500})
 print(ordered_dict) 
 
@@ -160,3 +160,41 @@ grouped_by_sex = reduce(names_by_sex, users, {})
 print(grouped_by_sex)
 
 # %%
+from collections import deque
+
+d = deque('ghi')
+
+d.append('j')
+d.appendleft('f')
+d.pop()
+d.popleft()
+list(d)
+list(reversed(d))
+d.extend('jkl')
+d.rotate(1) # right rotation
+d.rotate(-1) # left rotation
+
+deque(reversed(d))
+d.clear()
+# d.pop()
+d.extendleft('abc')
+d
+
+
+# %%
+from collections import deque
+
+def roundrobin(*iterables):
+    "roundrobin('ABC', 'D', 'EF') --> A D E B F C"
+    iterators = deque(map(iter, iterables))
+    while iterators:
+        try:
+            while True:
+                yield next(iterators[0])
+                iterators.rotate(-1)
+        except StopIteration:
+            # Remove an exhausted iterator.
+            iterators.popleft()
+    
+result = roundrobin('ABC', 'D', 'EF')
+print(result, *result)
