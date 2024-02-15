@@ -28,3 +28,33 @@ class CircularQueue:
     
     def size(self):
         return (self.rear - self.front + self.size) % self.size
+    
+    def displayQueue(self):
+        if self.front == -1:
+            print("Queue is Empty")
+            return
+        print("Elements in the Circular Queue are: ")
+        if self.rear >= self.front:
+            for i in range(self.front, self.rear + 1):
+                print(self.queue[i], end=" ")
+        else:
+            for i in range(self.front, self.size + 1):
+                print(self.queue[i], end="")
+
+if __name__ == '__main__':
+    q = CircularQueue(5)        
+
+    q.enqueue(14)
+    q.enqueue(22)
+    q.enqueue(13)
+    q.enqueue(-6)
+
+    q.displayQueue()
+
+    print("Deleted value =", q.dequeue())
+    print("Deleted value =", q.dequeue())
+
+    q.displayQueue()
+
+
+
