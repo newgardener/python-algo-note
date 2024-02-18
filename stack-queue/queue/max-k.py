@@ -1,4 +1,16 @@
 from collections import deque
+import time
+
+
+def timeit(func):
+    def wrapper(*args, **kwargs):
+        start_time = time.perf_counter()
+        result = func(*args, **kwargs)
+        end_time = time.perf_counter()
+        print(f"{func.__name__} took {end_time - start_time} seconds")
+        return result
+
+    return wrapper
 
 
 class Solution:
@@ -7,6 +19,7 @@ class Solution:
     if newly added element is smaller than prev Max, it can be ignored
     """
 
+    @timeit
     def myPrintMax(self, arr, k):
         # edge case
         if len(arr) < k:
@@ -22,6 +35,7 @@ class Solution:
         result.append(max(q))
         return result
 
+    @timeit
     def optimizedPrintMax(self, arr, k):
         dq = deque()
         result = []
@@ -56,3 +70,4 @@ if __name__ == "__main__":
     sol = Solution()
 
     print(sol.optimizedPrintMax([9, 7, 2, 4, 6, 8, 2, 11, 1], 3))
+    print(sol.myPrintMax([9, 7, 2, 4, 6, 8, 2, 11, 1], 3))
