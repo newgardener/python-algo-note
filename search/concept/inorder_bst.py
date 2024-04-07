@@ -6,6 +6,9 @@ class TreeNode:
 
 
 class InOrderBst:
+    def __init__(self):
+        self.inOrderNodeList = []
+
     def minDiffInBst(self, root):
         node = root
         if node is not None:
