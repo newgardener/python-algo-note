@@ -95,6 +95,25 @@ for k, v in dict.items():
 ordered_dict = OrderedDict({"banana": 3, "apple": 2, "pear": 1, "orange": 2})
 print(ordered_dict)
 
+# %% collections (3)
+
+from collections import defaultdict
+
+A = [5, 7, 3, 7, 5, 8]
+
+freq = defaultdict(int)
+
+for num in A:
+    freq[num] += 1
+
+maxUnique = -1
+
+for key, value in freq.items():
+    if value == 1:
+        maxUnique = max(maxUnique, key)
+
+print(maxUnique)
+
 # %%
 from collections import OrderedDict
 
