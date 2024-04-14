@@ -1,4 +1,11 @@
 # %% minHeap implementation (1)
+"""
+why heapify works in O(n)?
+sift-down operation which moves elements downwards in the tree hierarchy, 
+optimizes the number of comparisons and swaps
+"""
+
+
 def heapify(arr, size, index):
     smallestIndex = index
     leftChildIndex = 2 * index + 1
