@@ -18,6 +18,18 @@ def rotate_by_90(matrix):
     return matrix
 
 
+def rotate_by_90_version2(matrix):
+    row_length = len(matrix)
+    column_length = len(matrix[0])
+
+    res = [[0] * row_length for _ in range(column_length)]
+    for r in range(row_length):
+        for c in range(column_length):
+            res[c][row_length - 1 - r] = matrix[r][c]
+
+    return res
+
+
 # %%
 """
 matrix:
@@ -85,7 +97,8 @@ def rotate_by_270(matrix):
 import copy
 
 print(rotate_by_90(copy.deepcopy(matrix)))
-print(rotate_by_180(copy.deepcopy(matrix)))
-print(rotate_by_270(copy.deepcopy(matrix)))
+print(rotate_by_90_version2(copy.deepcopy(matrix)))
+# print(rotate_by_180(copy.deepcopy(matrix)))
+# print(rotate_by_270(copy.deepcopy(matrix)))
 
 # %%
