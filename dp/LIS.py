@@ -71,3 +71,33 @@ def maxEnvelops(envelops):
 
 envelops = [[5, 4], [6, 4], [6, 7], [2, 3]]
 print(maxEnvelops(envelops))
+
+# %%
+"""
+Maximum Subarray problem
+"""
+
+
+def maxSubArray(nums):
+    ans = nums[0]
+    cur = nums[0]
+
+    for i in nums[1:]:
+        cur = max(i, i + cur)
+        ans = max(ans, cur)
+
+    return ans
+
+
+def maxSubArrayOptimized(nums):
+    total = 0
+    result = float("-inf")
+
+    for num in nums:
+        total += num
+        if total > result:
+            result = total
+        if total < 0:
+            total = 0
+
+    return result
