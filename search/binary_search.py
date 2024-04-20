@@ -14,16 +14,26 @@ def binary_search(array, target):
     return None
 
 
+# %%
+# when while loop condition is start <= end
+
+
 def leftmost_binary_search(array, target):
     start, end = 0, len(array) - 1
-    while start <= end:
+    # while start <= end:
+    #     mid = (start + end) // 2
+    #     # this ensures even if target is found, we can continue searching to the left to find first occurrence target
+    #     if array[mid] >= target:
+    #         end = mid - 1
+    #     else:
+    #         start = mid + 1
+
+    while start < end:
         mid = (start + end) // 2
-        # this ensures even if target is found, we can continue searching to the left to find first occurrence target
         if array[mid] >= target:
-            end = mid - 1
+            end = mid
         else:
             start = mid + 1
-        print(start, end, mid)
 
     if start < len(array) and array[start] == target:
         return start
@@ -32,14 +42,20 @@ def leftmost_binary_search(array, target):
 
 def rightmost_binary_search(array, target):
     start, end = 0, len(array) - 1
-    while start <= end:
+    # while start <= end:
+    #     mid = (start + end) // 2
+    #     if array[mid] > target:
+    #         end = mid - 1
+    #     # array[mid] <= start skips the current matched target to continue searching to the right to find last occurrence target
+    #     else:
+    #         start = mid + 1
+
+    while start < end:
         mid = (start + end) // 2
-        if array[mid] > target:
-            end = mid - 1
-        # array[mid] <= start skips the current matched target to continue searching to the right to find last occurrence target
+        if array[mid] <= target:
+            start = mid
         else:
-            start = mid + 1
-        print(start, end, mid)
+            end = mid - 1
 
     if end >= 0 and array[end] == target:
         return end
