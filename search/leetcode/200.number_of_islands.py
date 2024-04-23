@@ -1,3 +1,8 @@
+"""
+https://leetcode.com/problems/number-of-islands/description/
+"""
+
+
 def numIslands(grid: list[list[str]]) -> int:
     def dfs(row, col):
         if 0 <= row < len(grid) and 0 <= col < len(grid[0]) and grid[row][col] == "1":
