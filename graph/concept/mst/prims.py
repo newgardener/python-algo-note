@@ -13,7 +13,7 @@ class Graph:
 
     def primsMst(self):
         mst = []
-        total_cost = 0
+        mst_cost = 0
 
         # (cost, vertex) in order to extract smallest cost one at a time
         min_heap = [(0, 0)]
@@ -33,7 +33,7 @@ class Graph:
                 if v not in visited:
                     heapq.heappush(min_heap, (weight, v))
 
-        return mst, total_cost
+        return mst, mst_cost
 
 
 graph = Graph(5)
@@ -46,5 +46,5 @@ graph.addEdge(2, 4, 4)
 graph.addEdge(3, 4, 7)
 
 
-mst, total_cost = graph.primsMst()
-print(mst, total_cost)
+mst, mst_cost = graph.primsMst()
+print(mst, mst_cost)
