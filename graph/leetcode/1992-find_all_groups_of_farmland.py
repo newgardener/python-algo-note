@@ -31,3 +31,27 @@ def findFarmlandBFS(land: list[list[int]]) -> list[list[int]]:
                 r1, c1, r2, c2 = bfs(i, j, visited)
                 result.append([r1, c1, r2, c2])
     return result
+
+
+# %%
+def findFarmland(land: list[list[int]]) -> list[list[int]]:
+    m, n = len(land), len(land[0])
+
+    result = []
+    for i in range(m):
+        for j in range(n):
+            # travel only (0, 1), (1, 0) directions
+            # condition to avoid traveling visited cells again
+            if (
+                land[i][j] == 0
+                or (j > 0 and land[i][j - 1] == 1)
+                or (i > 0 and land[i - 1][j] == 1)
+            ):
+                continue
+            r2, c2 = i, j
+            while r2 + 1 < m and land[r2 + 1][j] == 1:
+                r2 += 1
+            while c2 + 1 < n and land[i][c2 + 1] == 1:
+                c2 += 1
+            result.append([i, j, r2, c2])
+    return result
