@@ -1,4 +1,5 @@
 from collections import deque
+from typing import Optional
 
 
 class TreeNode:
@@ -8,7 +9,13 @@ class TreeNode:
         self.right = right
 
 
-def sumNumbers(root: optional[TreeNode]) -> int:
+# %%
+"""
+solve using bfs
+"""
+
+
+def sumNumbers(root: Optional[TreeNode]) -> int:
     def isLeafNode(node):
         return node and not node.left and not node.right
 
@@ -44,3 +51,23 @@ def sumNumbers(root: optional[TreeNode]) -> int:
     for leaf in leafNodes:
         result += int(restorePath(leaf, parents))
     return result
+
+
+# %%
+"""
+solve using dfs
+"""
+
+
+def sumNumbers(root: Optional[TreeNode]) -> int:
+    def dfs(node, pathSum):
+        if not node:
+            return 0
+
+        pathSum = pathSum * 10 + node.val
+        if not node.left and not node.right:
+            return pathSum
+
+        return dfs(node.left, pathSum) + dfs(node.right, pathSum)
+
+    return dfs(root, 0)
