@@ -1,4 +1,4 @@
-# https://leetcode.com/problems/add-one-row-to-tree/description/
+# https://leetcode.com/problems/add-one-row-to-tree
 
 from typing import Optional
 

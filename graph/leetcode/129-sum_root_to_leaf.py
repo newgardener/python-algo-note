@@ -1,4 +1,4 @@
-# https://leetcode.com/problems/sum-root-to-leaf-numbers/description/
+# https://leetcode.com/problems/sum-root-to-leaf-numbers/
 
 from collections import deque
 from typing import Optional
