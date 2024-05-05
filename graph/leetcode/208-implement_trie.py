@@ -1,5 +1,13 @@
 # https://leetcode.com/problems/implement-trie-prefix-tree
 
+"""
+n - number of inserted keys, m - key length or average key length
+Time Complexity:
+  - Insert: O(m)
+  - Search and StartsWith: O(m)
+Space Complexity: O(n*m)
+"""
+
 
 class Trie:
     class Node:
