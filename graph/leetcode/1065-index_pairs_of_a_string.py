@@ -1,3 +1,15 @@
+"""
+Time Complexity:
+  - Building the Trie: O(N*L) where N = number of words, L = average length of words
+  - Finding Index Pairs: O(T^2) where T = length of text string
+  => 
+
+Space Complexity:
+  - Trie Storage: O(N*L) for storing N words each of average length L
+
+"""
+
+
 class TrieNode:
     def __init__(self):
         self.children = {}
