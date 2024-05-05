@@ -1,38 +1,52 @@
-# class TrieNode:
-#     def __init__(self):
-#         self.children = {}  # Using a dictionary to hold child nodes for each letter
-#         self.isEnd = False  # Flag to mark the end of a word
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.isEnd = False
+
+
+class Trie:
+    def __init__(self):
+        self.root = TrieNode()
+
+    def insert(self, word):
+        curr = self.root
+        for ch in word:
+            if ch not in curr.children:
+                curr.children[ch] = TrieNode()
+            curr = curr.children[ch]
+        curr.isEnd = True  # mark the end of a word
 
 
 class Solution:
-    def findCharIndices(self, text, char):
-        return [
-            index for index, current_char in enumerate(text) if current_char == char
-        ]
-
     def indexPairs(self, text, words):
-        result = []
+        trie = Trie()
         for word in words:
-            startIndices = self.findCharIndices(text, word[0])
-            # no matched case
-            if not startIndices:
-                continue
+            trie.insert(word)
 
-            for start in startIndices:
-                startIndex, charIndex = start, 0
-                isMatched = True
-                while startIndex < len(text) and charIndex < len(word):
-                    if text[startIndex] != word[charIndex]:
-                        isMatched = False
-                        break
-                    startIndex += 1
-                    charIndex += 1
-                if isMatched:
-                    result.append((start, startIndex - 1))
-
-        return sorted(result)
+        result = []
+        for i in range(len(text)):
+            node = trie.root
+            for j in range(i, len(text)):
+                ch = text[j]
+                # character is not in a trie
+                if ch not in node.children:
+                    break
+                node = node.children[ch]
+                if node.isEnd:
+                    result.append([i, j])
+        return result
 
 
-text = "programmingisfun"
-words = ["pro", "is", "fun", "gram"]
-print(Solution().indexPairs(text, words))
+solution = Solution()
+
+text1 = "bluebirdskyscraper"
+words1 = ["blue", "bird", "sky"]
+print(solution.indexPairs(text1, words1))
+
+text2 = "programmingisfun"
+words2 = ["pro", "is", "fun", "gram"]
+print(solution.indexPairs(text2, words2))
+
+text3 = "interstellar"
+words3 = ["stellar", "star", "inter"]
+print(solution.indexPairs(text3, words3))
