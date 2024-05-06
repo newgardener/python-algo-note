@@ -31,12 +31,11 @@ class Solution:
 
             node = trie.root
             for end in range(start, n):
-                if "a" <= s[end] <= "z":
-                    if s[end] not in node.children:
-                        break
-                    node = node.children[s[end]]
-                    if node.isEnd:
-                        dp[start] = min(dp[start], dp[end + 1])
+                if s[end] not in node.children:
+                    break
+                node = node.children[s[end]]
+                if node.isEnd:
+                    dp[start] = min(dp[start], dp[end + 1])
         return dp[0]
 
     def minExtraCharForward(self, s: str, dictionary: list[str]) -> int:
