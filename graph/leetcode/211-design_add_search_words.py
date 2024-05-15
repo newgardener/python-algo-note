@@ -1,34 +1,38 @@
-class WordDictionary:
-    class Node:
-        def __init__(self):
-            self.children = {}
-            self.isEnd = False
-
+class TrieNode:
     def __init__(self):
-        self.wordDict = WordDictionary.Node()
+        self.children = {}
+        self.isEnd = False
+
+
+class WordDictionary:
+    def __init__(self):
+        self.root = TrieNode()
 
     def addWord(self, word: str) -> None:
-        node = self.wordDict
+        node = self.root
         for ch in word:
             if ch not in node.children:
-                node.children[ch] = WordDictionary.Node()
+                node.children[ch] = TrieNode()
             node = node.children[ch]
         node.isEnd = True
 
     def search(self, word: str) -> bool:
-        node = self.wordDict
-
-        for ch in word:
-            if ch != "." and ch not in node.children:
-                return False
-            if ch == ".":
-                keys = list(node.children.keys())
-                if len(keys) == 0:
+        def dfs(i, node):
+            curr = node
+            for j in range(i, len(word)):
+                ch = word[j]
+                if ch == ".":
+                    for child in curr.children.values():
+                        if dfs(j + 1, child):
+                            return True
                     return False
-                node = node.children[keys[0]]
-            else:
-                node = node.children[ch]
-        return node.isEnd or word[-1] == "."
+                else:
+                    if ch not in curr.children:
+                        return False
+                    curr = curr.children[ch]
+            return curr.isEnd
+
+        return dfs(0, self.root)
 
 
 # Your WordDictionary object will be instantiated and called as such:
