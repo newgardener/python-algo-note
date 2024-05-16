@@ -1,29 +1,37 @@
-from collections import defaultdict
+from collections import defaultdict, deque
 from typing import List
 
 
 class Solution:
-    def buildGraph(self, edges: List[List[int]]) -> defaultdict[int, list]:
+    def buildGraph(self, n: int, edges: List[List[int]]) -> defaultdict[int, list]:
         graph = defaultdict(list)
+        in_degree = [0] * n
         for u, v in edges:
-            graph[v].append(u)
-        return graph
+            graph[u].append(v)
+            in_degree[v] += 1
+        return graph, in_degree
 
-    def findAncestors(
-        self, node: int, graph: defaultdict[int, list], ancestors: List[set]
-    ):
-        if node not in graph:
-            return
-        for parent in graph[node]:
-            ancestors[node].add(parent)
-            self.findAncestors(parent, graph, ancestors)
-            ancestors[node].update(ancestors[parent])
+    def topologicalSort(self, n: int, graph: dict[int, list], in_degree: List[int]):
+        ordered_list = []
+        queue = deque([i for i in range(n) if in_degree[i] == 0])
+
+        while queue:
+            node = queue.popleft()
+            ordered_list.append(node)
+            for neighbor in graph[node]:
+                in_degree[neighbor] -= 1
+                if in_degree[neighbor] == 0:
+                    queue.append(neighbor)
+        return ordered_list
 
     def getAncestors(self, n: int, edges: List[List[int]]) -> List[List[int]]:
+        graph, in_degree = self.buildGraph(n, edges)
+        ordered_list = self.topologicalSort(n, graph, in_degree)
         ancestors = [set() for _ in range(n)]
-        graph = self.buildGraph(edges)
 
-        for node in range(n):
-            self.findAncestors(node, graph, ancestors)
+        for node in ordered_list:
+            for neighbor in graph[node]:
+                ancestors[neighbor].add(node)
+                ancestors[neighbor].update(ancestors[node])
 
         return [sorted(list(ancestor)) for ancestor in ancestors]
