@@ -11,6 +11,8 @@ class Solution:
             in_degree[v] += 1
         return graph, in_degree
 
+    # O(V + E) when V = # of node, E = # of edge
+    # this approach scales well with the size of graph avoiding redundant calculations inherent in BFS approach
     def topologicalSort(self, n: int, graph: dict[int, list], in_degree: List[int]):
         ordered_list = []
         queue = deque([i for i in range(n) if in_degree[i] == 0])
