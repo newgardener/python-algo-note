@@ -44,16 +44,16 @@ class Solution:
     def longestCycle(self, edges: List[int]) -> int:
         n = len(edges)
         graph, in_degree = self.buildGraph(edges)
-        topo_list, visited = self.topological_sort(n, graph, in_degree)
+        _, visited = self.topological_sort(n, graph, in_degree)
 
         if all(visited):
             return -1
 
-        nodeVisited = [False] * n
+        visitedInCycle = [False] * n
         longest_cycle = -1
         for i in range(n):
             if visited[i] == False:
                 longest_cycle = max(
-                    self.calculateCycle(i, edges, nodeVisited), longest_cycle
+                    self.calculateCycle(i, edges, visitedInCycle), longest_cycle
                 )
         return longest_cycle
