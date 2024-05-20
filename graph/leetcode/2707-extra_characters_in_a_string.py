@@ -1,3 +1,6 @@
+# https://leetcode.com/problems/extra-characters-in-a-string/description/
+
+
 class TrieNode:
     def __init__(self):
         self.children = {}

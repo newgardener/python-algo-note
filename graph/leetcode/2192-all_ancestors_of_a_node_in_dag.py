@@ -34,6 +34,7 @@ class Solution:
         for node in ordered_list:
             for neighbor in graph[node]:
                 ancestors[neighbor].add(node)
+                # consider that if we add ancestors of the node, all ancestors would be covered
                 ancestors[neighbor].update(ancestors[node])
 
         return [sorted(list(ancestor)) for ancestor in ancestors]
