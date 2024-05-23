@@ -1,3 +1,5 @@
+# https://leetcode.com/problems/frequency-of-the-most-frequent-element
+
 from typing import List
 
 
@@ -24,7 +26,23 @@ def maxFrequency(nums: List[int], k: int) -> int:
     for i in range(n):
         cumSum[i] = cumSum[i - 1] + nums[i] if i > 0 else nums[i]
 
-    frequency = 0
+    maxFreq = 0
     for i in range(n):
-        frequency = max(frequency, binarySearch(i, cumSum))
-    return frequency
+        maxFreq = max(maxFreq, binarySearch(i, cumSum))
+    return maxFreq
+
+
+def enhancedSolution(nums: List[int], k: int) -> int:
+    nums.sort()
+    maxFreq = 0
+    total = 0
+    left = 0
+
+    for right in range(len(nums)):
+        total += nums[right]
+        while (right - left + 1) * nums[right] - total > k:
+            total -= nums[left]
+            left += 1
+        maxFreq = max(maxFreq, right - left + 1)
+
+    return maxFreq
