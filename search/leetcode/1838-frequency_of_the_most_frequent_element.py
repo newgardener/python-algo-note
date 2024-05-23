@@ -3,6 +3,7 @@
 from typing import List
 
 
+# binary search
 def maxFrequency(nums: List[int], k: int) -> int:
     def binarySearch(index, cumSum):
         start, end = 0, index
@@ -32,6 +33,7 @@ def maxFrequency(nums: List[int], k: int) -> int:
     return maxFreq
 
 
+# sliding window
 def enhancedSolution(nums: List[int], k: int) -> int:
     nums.sort()
     maxFreq = 0
