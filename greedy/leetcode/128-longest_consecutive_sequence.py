@@ -16,3 +16,23 @@ def longestConsecutive(nums: List[int]) -> int:
                 numDict[num + 1] = numDict[num] + 1
                 num += 1
     return max(list(numDict.values()))
+
+
+def longestConsecutive(nums: List[int]) -> int:
+    if not nums:
+        return 0
+
+    numSet = set(nums)
+    maxLength = 0
+
+    for num in numSet:
+        if num - 1 not in numSet:
+            currNum = num
+            currLength = 1
+
+            while currNum + 1 in numSet:
+                currNum += 1
+                currLength += 1
+
+            maxLength = max(maxLength, currLength)
+    return maxLength
