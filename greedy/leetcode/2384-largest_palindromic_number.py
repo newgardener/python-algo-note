@@ -1,30 +1,22 @@
+# https://leetcode.com/problems/largest-palindromic-number
+
+
 def largestPalindromic(num: str) -> str:
-    frequency = {}
-    for ch in num:
-        if ch not in frequency:
-            frequency[ch] = 1
-        else:
-            frequency[ch] += 1
+    freq = [0] * 10  # count frequency of each digit from '0' to '9'
+    for digit in num:
+        freq[int(digit)] += 1
 
-    half = []
-    numPairs = sorted([num for num in frequency if frequency[num] >= 2], reverse=True)
-    for num in numPairs:
-        if not half and num == "0":
-            continue
-        repeat = frequency[num] // 2
-        half += [num] * repeat
-        frequency[num] -= repeat * 2
+    firstHalf, middle = [], ""
+    for i in range(9, -1, -1):
+        # assign the largest odd count number to middle
+        if freq[i] % 2 != 0 and middle == "":
+            middle = str(i)
+        firstHalf.extend([str(i)] * (freq[i] // 2))
 
-    if half and "0" in frequency:
-        repeat = frequency["0"] // 2
-        half += ["0"] * repeat
-        frequency["0"] -= repeat * 2
-
-    middle = sorted([num for num in frequency if frequency[num] >= 1], reverse=True)
-
-    if middle:
-        result = half + [middle[0]] + half[::-1]
-    else:
-        result = half + half[::-1]
-
-    return "".join(result)
+    # case for only middle or nothing
+    if not firstHalf:
+        return middle if middle else "0"
+    # case for all zeros
+    elif all(d == "0" for d in firstHalf):
+        return "0"
+    return "".join(firstHalf) + middle + "".join(firstHalf[::-1])
