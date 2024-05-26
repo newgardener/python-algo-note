@@ -1,15 +1,14 @@
 def removeDuplicateLetters(s: str) -> str:
-    sortedStr = sorted(s)
-    requiredStr = set(s)
+    count = {char: s.count(char) for char in set(s)}
+    result = []  # stack for the result string
+    present = set()  # set to track if a character is in the result
 
-    for ch in sorted(list(requiredStr)):
-        idx = s.find(ch)
-        result = ch
-        added = set([ch])
-        if requiredStr.issubset(set(s[idx:])):
-            while idx < len(s):
-                if s[idx] not in added:
-                    added.add(s[idx])
-                    result += s[idx]
-                idx += 1
-            return result
+    for char in s:
+        if char not in present:
+            while result and char < result[-1] and count[result[-1]] > 0:
+                present.remove(result.pop())
+            result.append(char)
+            present.add(char)
+        count[char] -= 1
+
+    return "".join(result)
