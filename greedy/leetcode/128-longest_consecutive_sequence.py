@@ -1,3 +1,5 @@
+# https://leetcode.com/problems/longest-consecutive-sequence/solutions/41055/my-really-simple-java-o-n-solution-accepted/
+
 from typing import List
 
 
