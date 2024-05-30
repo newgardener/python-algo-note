@@ -27,3 +27,31 @@ def longestNiceSubstring(s: str) -> str:
                 maxLen = j - i + 1
 
     return s[start : start + maxLen]
+
+
+# %%
+"""
+Divide and Conquer Solution
+Time Complexity: O(NlogN)
+- create two subproblems whose size are reduced to N/2 => O(NlogN)
+- in worst case scenario, O(N^2)
+"""
+
+
+def longestNiceSubstring(s: str) -> str:
+    def divideAndConquer(s: str) -> str:
+        if not s or len(s) < 2:
+            return ""
+
+        for i in range(len(s)):
+            if s[i].lower() not in s or s[i].upper() not in s:
+                left = divideAndConquer(s[:i])
+                right = divideAndConquer(s[i + 1 :])
+                if len(left) >= len(right):
+                    return left
+                else:
+                    return right
+        # nice str
+        return s
+
+    return divideAndConquer(s)
