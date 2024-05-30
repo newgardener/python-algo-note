@@ -55,3 +55,43 @@ def longestNiceSubstring(s: str) -> str:
         return s
 
     return divideAndConquer(s)
+
+
+# %%
+"""
+Ideal Divide and Conquer Solution
+Important Take-Away: the depth of recursion tree is bounded by the number of unique characters in the string
+Time Complexity: O(26*N) -> O(N) linear time comparative to length of s
+- identify "not nice" characters at each recursion tree
+- at most 26 levels of recursion and each level involves O(n) work => O(26*N), which simplifies to O(N)
+"""
+
+
+def longestNiceSubstring(s: str) -> str:
+    def divideAndConquer(i: int, j: int):
+        if j - i + 1 < 2:
+            return (0, -1)
+
+        # find all unpaired characters in O(N)
+        hashSet = set()
+        for k in range(i, j + 1):
+            hashSet.add(s[k])
+
+        parts = [i - 1]
+        for k in range(i, j + 1):
+            if s[k].lower() not in hashSet or s[k].upper() not in hashSet:
+                parts.append(k)
+        parts.append(j + 1)
+
+        maxLenPair = (0, -1)
+        # nice substr
+        if len(parts) == 2:
+            return (i, j)
+        for i in range(len(parts) - 1):
+            ni, nj = divideAndConquer(parts[i] + 1, parts[i + 1] - 1)
+            if nj - ni + 1 > maxLenPair[1] - maxLenPair[0] + 1:
+                maxLenPair = (ni, nj)
+        return maxLenPair
+
+    l, r = divideAndConquer(0, len(s) - 1)
+    return s[l : r + 1]
