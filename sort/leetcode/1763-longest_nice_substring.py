@@ -1,3 +1,5 @@
+# https://leetcode.com/problems/longest-nice-substring/
+
 # %%
 """
 Brute-Force Solution
