@@ -9,7 +9,7 @@ class ListNode:
 
 def sortList(head: Optional[ListNode]) -> Optional[ListNode]:
     # base condition
-    if not head or head.next:
+    if not head or not head.next:
         return head
 
     # prev == mid position (subProblem 1)
