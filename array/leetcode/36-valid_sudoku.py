@@ -1,20 +1,29 @@
+import collections
 from typing import List
+
+"""
+Time Complexity: O(9^2)
+check all rows, cols, squares whether it only contains 1-9 once
+"""
 
 
 def isValidSudoku(board: List[List[str]]) -> bool:
-    for i in range(3):
-        for j in range(3):
-            grid = [
-                [(i * 3 + x, j * 3), (i * 3 + x, j * 3 + 1), (i * 3 + x, j * 3 + 2)]
-                for x in range(3)
-            ]
-            numSet = set()
-            for coords in grid:
-                for coord in coords:
-                    num = board[coord[0]][coord[1]]
-                    if num == ".":
-                        continue
-                    if num in numSet:
-                        return False
-                    numSet.add(num)
-        return True
+    rows = collections.defaultdict(set)
+    cols = collections.defaultdict(set)
+    squares = collections.defaultdict(set)
+
+    for i in range(9):
+        for j in range(9):
+            num = board[i][j]
+
+            if num == ".":
+                continue
+
+            if num in rows[i] or num in cols[j] or num in squares[(i // 3, j // 3)]:
+                return False
+
+            rows[i].add(num)
+            cols[j].add(num)
+            squares[(i // 3, j // 3)].add(num)
+
+    return True
