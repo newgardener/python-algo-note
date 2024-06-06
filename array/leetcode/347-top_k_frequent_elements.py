@@ -3,7 +3,8 @@ from collections import defaultdict
 import heapq
 
 """
-Time Complexity: O(nlogk) where n=len(nums), k
+MaxHeap
+Time Complexity: O(n)
 """
 
 
@@ -12,16 +13,13 @@ def topKFrequent(nums: List[int], k: int) -> List[int]:
     for num in nums:
         numDict[num] += 1
 
-    arr = []
-    for key, value in numDict.items():
-        if len(arr) < k:
-            heapq.heappush(arr, (value, key))
-        else:
-            if arr[0][0] < value:
-                heapq.heappop(arr)
-                heapq.heappush(arr, (value, key))
+    maxHeap = [(-value, key) for (key, value) in numDict.items()]
+    heapq.heapify(maxHeap)
 
-    return [key for (value, key) in arr]
+    res = []
+    for _ in range(k):
+        res.append(heapq.heappop(maxHeap)[1])
+    return res
 
 
 """
