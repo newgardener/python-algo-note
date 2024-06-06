@@ -12,3 +12,11 @@ def twoSumInSortedArray(nums: List[int], target: int) -> List[int]:
             j -= 1
         else:
             i += 1
+
+
+def twoSumInUnSortedArray(nums: List[int], target: int) -> List[int]:
+    numMap = {}
+    for i, num in enumerate(nums):
+        if target - num in numMap:
+            return [numMap[target - num], i]
+        numMap[num] = i
