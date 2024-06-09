@@ -11,7 +11,7 @@ def leastInterval(tasks: List[str], n: int) -> int:
     heapq.heapify(maxHeap)
 
     time = 0
-    q = deque()  # pairs of [-cnt, idleTime]
+    q = deque([])  # pairs of [-cnt, idleTime]
 
     while maxHeap or q:
         time += 1
