@@ -20,7 +20,7 @@ def threeSum(nums: List[int]) -> List[List[int]]:
             else:
                 res.append([a, nums[l], nums[r]])
                 l += 1
-                # pass through the same element by moving l pointer
+                # pass through the same element by moving l
                 while nums[l] == nums[l - 1] and l < r:
                     l += 1
     return res
