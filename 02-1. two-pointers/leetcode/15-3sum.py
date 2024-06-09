@@ -4,9 +4,12 @@ from typing import List
 def threeSum(nums: List[int]) -> List[List[int]]:
     nums.sort()
 
-    added = set()
     res = []
     for i, a in enumerate(nums):
+        # condition for avoiding duplicates
+        if i > 0 and nums[i] == nums[i - 1]:
+            continue
+
         l, r = i + 1, len(nums) - 1
         while l < r:
             threeSum = a + nums[l] + nums[r]
@@ -15,8 +18,9 @@ def threeSum(nums: List[int]) -> List[List[int]]:
             elif threeSum < 0:
                 l += 1
             else:
-                if (a, nums[l], nums[r]) not in added:
-                    res.append([a, nums[l], nums[r]])
-                    added.add((a, nums[l], nums[r]))
-                    r -= 1
+                res.append([a, nums[l], nums[r]])
+                l += 1
+                # pass through the same element by moving l pointer
+                while nums[l] == nums[l - 1] and l < r:
+                    l += 1
     return res
