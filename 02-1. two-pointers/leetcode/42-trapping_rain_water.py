@@ -6,21 +6,17 @@ Time Complexity: O(N)
 
 
 def trap(height: List[int]) -> int:
-    leftMax, rightMax = 0, height[-1]
     l, r = 0, len(height) - 1
+    leftMax, rightMax = height[l], height[r]
     trap = 0
 
     while l < r:
-        leftMax = max(leftMax, height[l])
-        rightMax = max(rightMax, height[r])
-        if height[l] < leftMax:
-            trap += leftMax - height[l]
-        if height[r] < rightMax:
-            trap += rightMax - height[r]
-
         if leftMax <= rightMax:
             l += 1
+            leftMax = max(leftMax, height[l])
+            trap += leftMax - height[l]
         else:
-            r -= 1
-
+            r += 1
+            rightMax = max(rightMax, height[r])
+            trap += rightMax - height[r]
     return trap
