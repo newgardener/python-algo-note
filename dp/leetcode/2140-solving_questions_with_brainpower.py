@@ -6,7 +6,7 @@ Recursive Solution: Time Complexity O(2^N)
 """
 
 
-def mostPoints(questions: List[List[int]]) -> int:
+def mostPointsRecursive(questions: List[List[int]]) -> int:
     dp = {}
 
     def dfs(i):
@@ -20,3 +20,13 @@ def mostPoints(questions: List[List[int]]) -> int:
         return dp[i]
 
     return dfs(0)
+
+
+def mostPointsIterative(questions: List[List[int]]) -> int:
+    # dict structure is useful - not getting out of range error
+    dp = {}
+
+    for i in range(len(questions) - 1, -1, -1):
+        dp[i] = max(questions[i][0] + dp.get(questions[i][1] + 1 + i), dp.get(i + 1))
+
+    return dp[0]
