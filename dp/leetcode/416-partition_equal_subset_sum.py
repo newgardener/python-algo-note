@@ -9,17 +9,13 @@ def canPartition(nums: List[int]) -> bool:
     if target in nums:
         return True
 
-    def dfs(i, target):
-        # base condition
-        if target == 0:
-            return True
-        if i == len(nums) or target < 0:
-            return False
+    dp = set([0])
 
-        notTake = dfs(i + 1, target)
-        take = dfs(i + 1, target - nums[i])
-        res = notTake or take
-
-        return res
-
-    return dfs(0, target)
+    for num in nums:
+        newDp = set(dp)
+        for t in dp:
+            if t + num == target:
+                return True
+            newDp.add(t + num)
+        dp = newDp
+    return False
