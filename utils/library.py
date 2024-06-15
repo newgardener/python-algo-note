@@ -21,7 +21,7 @@ print(data)
 
 # %% itertools
 
-from itertools import count, permutations
+from itertools import permutations
 from itertools import combinations
 from itertools import product
 
@@ -232,3 +232,5 @@ def roundrobin(*iterables):
 
 result = roundrobin("ABC", "D", "EF")
 print(result, *result)
+
+# %%
