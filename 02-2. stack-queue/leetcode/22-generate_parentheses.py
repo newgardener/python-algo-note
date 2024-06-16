@@ -3,20 +3,15 @@ from typing import List
 
 def generateParenthesis(n: int) -> List[str]:
     result = []
-    stack = []
 
-    def backtrack(left, right):
+    def backtrack(left, right, s):
         if left == right == n:
-            result.append("".join(stack))
+            result.append(s)
         if left < n:
-            stack.append("(")
-            backtrack(left + 1, right)
-            stack.pop()
+            backtrack(left + 1, right, s + "(")
 
         if right < left:
-            stack.append(")")
-            backtrack(left, right + 1)
-            stack.pop()
+            backtrack(left, right + 1, s + ")")
 
-    backtrack(0, 0)
+    backtrack(0, 0, "")
     return result
