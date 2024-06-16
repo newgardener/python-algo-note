@@ -1,5 +1,11 @@
 from typing import List
 
+"""
+Stack
+Space Complexity: O(N)
+Time Complexity: O(N) 
+"""
+
 
 def largestRectangleArea(heights: List[int]) -> int:
     n = len(heights)
