@@ -21,3 +21,30 @@ def checkInclusion(s1: str, s2: str) -> bool:
         i += 1
         j += 1
     return False
+
+
+"""
+Enhanced Solution
+Time Complexity: O(N)
+"""
+
+
+def enhancedCheckInclusion(s1: str, s2: str) -> bool:
+    len1, len2 = len(s1), len(s2)
+    if len1 > len2:
+        return False
+
+    # character a to z
+    counts1 = [0] * 26
+    counts2 = [0] * 26
+
+    for ch in s1:
+        counts1[ord(ch) - ord("a")] += 1
+
+    for i in range(len2):
+        counts2[ord(s2[i]) - ord("a")] += 1
+        if i >= len1:
+            counts2[ord(s2[i]) - ord("a")] -= 1
+        if counts1 == counts2:
+            return True
+    return False
