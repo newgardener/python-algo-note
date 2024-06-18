@@ -1,6 +1,11 @@
 from collections import deque
 from typing import List
 
+"""
+Monotonic Decreasing Queue
+Time Complexity: O(N)
+"""
+
 
 def maxSlidingWindow(nums: List[int], k: int) -> List[int]:
     result = []
