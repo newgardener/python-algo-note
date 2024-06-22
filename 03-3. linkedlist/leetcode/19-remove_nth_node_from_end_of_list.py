@@ -25,9 +25,29 @@ def removeNthFromEnd(head: Optional[ListNode], n: int) -> Optional[ListNode]:
         slow = slow.next
         fast = fast.next
 
+    # case where target node is the head
     if slow == head:
         head = head.next
     else:
         prev.next = slow.next
 
     return head
+
+
+def neetCodeSolution(head: Optional[ListNode], n: int) -> Optional[ListNode]:
+    # create dummy node to point prior to the target node
+    dummy = ListNode(0, head)
+    left = dummy
+    right = head
+
+    while n > 0 and right:
+        right = right.next
+        n -= 1
+
+    while right:
+        left = left.next
+        right = right.next
+
+    # delete
+    left.next = left.next.next
+    return dummy.next
