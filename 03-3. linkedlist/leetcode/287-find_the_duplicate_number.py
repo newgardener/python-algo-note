@@ -1,6 +1,13 @@
 from typing import List
 
 
+"""
+Time Complexity: O(N)
+1. figure out why this is linked list cycle problem
+2. should apply Floyd's algorithm
+"""
+
+
 def findDuplicate(nums: List[int]) -> int:
     slow, fast = 0, 0
     # find an intersection point
