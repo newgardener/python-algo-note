@@ -18,37 +18,19 @@ def reorderList(head: Optional[ListNode]):
         fast = fast.next.next
 
     # disconnect first and second to avoid cycle
-    secondHead = slow.next
+    second = slow.next
     slow.next = None
 
-    first = head
-    second = secondHead
+    prev = None
+    while second:
+        node = second.next
+        second.next = prev
+        prev = second
+        second = node
 
-    # reverse the second part
-    reversed = None
-    current = second
-    while current:
-        node = current
-        current = current.next
-        node.next = reversed
-        reversed = node
-
-    result = ListNode()
-    current = result
-    while first and reversed:
-        firstNode = first
-        reversedNode = reversed
-        first = first.next
-        reversed = reversed.next
-
-        current.next = firstNode
-        current.next.next = reversedNode
-        current = current.next.next
-
-    if first:
-        current.next = first
-
-    if reversed:
-        current.next = reversed
-
-    node = result.next
+    first, second = head, prev
+    while second:
+        temp1, temp2 = first.next, second.next
+        first.next = second
+        second.next = temp1
+        first, second = temp1, temp2
