@@ -1,5 +1,9 @@
 from collections import OrderedDict, defaultdict
 
+"""
+TODO: should implement LinkedList (length, pop, popLeft, pushRight) on your own and use those methods to implement LFUCache
+"""
+
 
 class ListNode:
     def __init__(self, key, val):
