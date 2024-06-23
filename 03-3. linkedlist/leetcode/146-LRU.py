@@ -1,3 +1,9 @@
+"""
+left --->  [1,1] <-> [3,3]  <--- right
+[LRU]      k = 2                 [MRU]
+"""
+
+
 class Node:
     def __init__(self, key, val):
         self.key, self.val = key, val
