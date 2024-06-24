@@ -97,3 +97,27 @@ def longestNiceSubstring(s: str) -> str:
 
     l, r = divideAndConquer(0, len(s) - 1)
     return s[l : r + 1]
+
+
+# %%
+"""
+Sliding Window
+Time Complexity: O(N^2)
+"""
+
+
+def longestNiceSubstring(s: str) -> str:
+    def isNice(s: str) -> bool:
+        return all(ch.swapcase() in s for ch in s)
+
+    if len(s) <= 1:
+        return ""
+    if isNice(s):
+        return s
+    result = ""
+    for start in range(len(s)):
+        for end in range(start + 1, len(s)):
+            if isNice(s[start : end + 1]):
+                if end - start + 1 > len(result):
+                    result = s[start : end + 1]
+    return result
