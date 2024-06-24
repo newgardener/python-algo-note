@@ -1,5 +1,11 @@
 from typing import List
 
+"""
+Three Pointers Problem
+ㄴ take-away: the interval of m and l is the number of nice subarrays within a window
+Time Complexity: O(N)
+"""
+
 
 def numberOfSubarrays(nums: List[int], k: int) -> int:
     odd, result = 0, 0
