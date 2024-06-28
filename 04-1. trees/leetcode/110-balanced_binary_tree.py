@@ -17,19 +17,14 @@ class TreeNode:
 class Solution:
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
         # (isBalanced, maxHeight)
-        def checkLRHeight(node):
+        def dfs(node):
             if not node:
                 return (True, 0)
-            leftBalanced, leftHeight = self.checkLRHeight(node.left)
-            rightBalanced, rightHeight = self.checkLRHeight(node.right)
-            maxHeight = max(leftHeight, rightHeight) + 1
-            if (
-                not leftBalanced
-                or not rightBalanced
-                or abs(leftHeight - rightHeight) > 1
-            ):
-                return (False, maxHeight)
-            return (True, maxHeight)
+            leftBalanced, leftHeight = dfs(node.left)
+            rightBalanced, rightHeight = dfs(node.right)
+            return (
+                leftBalanced and rightBalanced and abs(leftHeight - rightHeight) <= 1,
+                max(leftHeight, rightHeight) + 1,
+            )
 
-        balanced, _ = checkLRHeight(root)
-        return balanced
+        return dfs(root)[0]
