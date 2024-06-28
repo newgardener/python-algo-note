@@ -1,5 +1,12 @@
 from typing import Optional
 
+"""
+Key Points:
+- maxDiameter could be either a path including the node or not
+- should pass the height of a subtree upwards
+    - height of a subtree = max(leftHeight, rightHeight) + 1
+"""
+
 
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
