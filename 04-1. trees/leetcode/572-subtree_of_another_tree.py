@@ -1,5 +1,10 @@
 from typing import Optional
 
+"""
+# of root nodes: N, # of subRoot nodes: M
+Time Complexity: O(N*M)
+"""
+
 
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
