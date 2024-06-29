@@ -1,5 +1,10 @@
 # https://leetcode.com/problems/add-one-row-to-tree
 
+"""
+Time Complexity: O(logN) height of the tree
+Space Complexity: O(1)
+"""
+
 from typing import Optional
 
 
@@ -27,9 +32,11 @@ def addOneRow(
         bfs(node.left, level + 1)
         bfs(node.right, level + 1)
 
+    # edge case
     if not root:
         return root
 
+    # no depth - 1 exists, original tree is the new root's left subtree
     if depth == 1:
         newRoot = TreeNode(val)
         newRoot.left = root
