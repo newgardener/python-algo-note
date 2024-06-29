@@ -23,38 +23,45 @@ class BST:
             current = self.root
             parent = None  # set parentNode
             while current is not None:
+                # bst does not support duplicate data
+                if current.data == data:
+                    break
                 parent = current
                 if data < parent.data:
                     current = current.left
                 else:
                     current = current.right
 
-            if data < parent.data:
-                parent.left = newNode
-            else:
-                parent.right = newNode
+            if parent:
+                if data < parent.data:
+                    parent.left = newNode
+                else:
+                    parent.right = newNode
 
-    def deleteNode(self, root, value):
+    def _deleteNode(self, root, value):
         # base condition
         if root is None:
             return root
         if value < root.data:
-            return self.deleteNode(root.left, value)
+            return self._deleteNode(root.left, value)
         elif value > root.data:
-            return self.deleteNode(root.right, value)
+            return self._deleteNode(root.right, value)
         else:
+            # has only right subtree
             if root.left is None:
                 return root.right
+            # has only left subtree
             if root.right is None:
                 return root.left
-
-            temp = self.findMin(self.right)
+            # has both left and right subtrees
+            # find the next great value in the right subtree
+            temp = self.findMin(root.right)
             root.data = temp.data
-            root.right = self.deleteNode(root.right, temp)
+            root.right = self._deleteNode(root.right, temp)
         return root
 
     def delete(self, value):
-        self.root = self.deleteNode(self.root, value)
+        self.root = self._deleteNode(self.root, value)
 
     def search(self, node):
         current = self.root

@@ -12,6 +12,8 @@ class TreeNode:
 #%%
 """
 DFS solution
+Key point:
+- recursively traverse nodes increasing level when adding child nodes (left, right)
 """
 
 

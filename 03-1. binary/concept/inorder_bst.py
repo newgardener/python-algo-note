@@ -9,18 +9,18 @@ class InOrderBst:
     def __init__(self):
         self.inOrderNodeList = []
 
-    def minDiffInBst(self, root):
+    def traverse(self, root):
         node = root
         if node is not None:
-            self.minDiffInBst(node.left)
+            self.traverse(node.left)
             self.inOrderNodeList.append(node.val)
-            self.minDiffInBst(node.right)
+            self.traverse(node.right)
+        return self.inOrderNodeList
 
     def calcMinDiff(self, root):
-        self.inOrderNodeList = []
-        self.minDiffInBst(root)
+        inOrderList = self.traverse(root)
         min_diff = float("inf")
-        for i in range(len(self.inOrderNodeList) - 1):
+        for i in range(len(inOrderList) - 1):
             min_diff = min(
                 abs(self.inOrderNodeList[i + 1] - self.inOrderNodeList[i]), min_diff
             )
@@ -40,5 +40,6 @@ if __name__ == "__main__":
     example2.right.right = TreeNode(90)
 
     inOrderBst = InOrderBst()
+    print(inOrderBst.traverse(example))
     print(inOrderBst.calcMinDiff(example))
     print(inOrderBst.calcMinDiff(example2))
