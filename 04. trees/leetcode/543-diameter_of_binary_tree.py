@@ -24,8 +24,8 @@ class Solution:
                 # height
                 return 0
 
-            lHeight = self.dfs(node.left)
-            rHeight = self.dfs(node.right)
+            lHeight = dfs(node.left)
+            rHeight = dfs(node.right)
             self.maxDiameter = max(self.maxDiameter, lHeight + rHeight)
             return max(lHeight, rHeight) + 1
 
