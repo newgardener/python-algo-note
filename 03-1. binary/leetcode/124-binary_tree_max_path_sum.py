@@ -8,6 +8,7 @@ class TreeNode:
         self.right = right
 
 
+# %%
 class Solution:
     def maxPathSum(self, root: Optional[TreeNode]) -> int:
         def isLeafNode(node):
@@ -28,3 +29,32 @@ class Solution:
 
         result = dfs(root)
         return max(result, maxSum)
+
+
+# %%
+"""
+Enhanced Solution:
+- initialize maxSum value to root.val
+- bound negative value to 0
+"""
+
+
+class Solution:
+    def maxPathSum(self, root: Optional[TreeNode]) -> int:
+        maxSum = root.val
+
+        def dfs(node):
+            nonlocal maxSum
+
+            if not node:
+                return 0
+
+            lSum = max(dfs(node.left), 0)
+            rSum = max(dfs(node.right), 0)
+            # with split
+            maxSum = max(maxSum, lSum + rSum + node.val)
+            # without split
+            return max(lSum, rSum) + node.val
+
+        dfs(root)
+        return maxSum
