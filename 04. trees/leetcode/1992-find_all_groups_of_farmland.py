@@ -45,9 +45,9 @@ def findFarmland(land: list[list[int]]) -> list[list[int]]:
             # travel only (0, 1), (1, 0) directions
             # condition to avoid traveling visited cells again
             if (
-                land[i][j] == 0
-                or (j > 0 and land[i][j - 1] == 1)
-                or (i > 0 and land[i - 1][j] == 1)
+                    land[i][j] == 0
+                    or (j > 0 and land[i][j - 1] == 1)
+                    or (i > 0 and land[i - 1][j] == 1)
             ):
                 continue
             r2, c2 = i, j
