@@ -1,3 +1,11 @@
+"""
+Time Complexity:
+- serialize: O(N)
+- deserialize: O(N)
+ㄴ each node is processed exactly once
+"""
+
+
 class TreeNode(object):
     def __init__(self, x):
         self.val = x
