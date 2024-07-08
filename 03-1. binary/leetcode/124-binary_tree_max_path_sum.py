@@ -38,7 +38,6 @@ Enhanced Solution:
 - bound negative value to 0
 """
 
-
 class Solution:
     def maxPathSum(self, root: Optional[TreeNode]) -> int:
         maxSum = root.val
