@@ -47,3 +47,36 @@ class Codec:
             return node
 
         return dfs()
+
+
+# %%
+# postorder traversal
+class Codec:
+    def serialize(self, root):
+        res = []
+
+        def dfs(node):
+            if not node:
+                res.append(NULL)
+                return
+            dfs(node.left)
+            dfs(node.right)
+            res.append(str(node.val))
+
+        dfs(root)
+        return SEP.join(res)
+
+    def deserialize(self, data):
+        nodes = data.split(SEP)
+
+        def dfs():
+            val = nodes.pop()
+            if val == NULL:
+                return None
+            node = TreeNode(val)
+            # create right subtree first before left subtree
+            node.right = dfs()
+            node.left = dfs()
+            return node
+
+        return dfs()
