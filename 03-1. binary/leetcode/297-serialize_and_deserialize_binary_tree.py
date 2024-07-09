@@ -1,7 +1,7 @@
 """
 Time Complexity:
-- serialize: O(N)
-- deserialize: O(N)
+- serialize (encode a tree to a single string): O(N)
+- deserialize (decode encoded data to a tree): O(N)
 ㄴ each node is processed exactly once
 """
 
@@ -17,16 +17,12 @@ SEP = ","
 NULL = "#"
 
 
+# %%
+# preorder traversal
 class Codec:
     def serialize(self, root):
-        """Encodes a tree to a single string.
-
-        :type root: TreeNode
-        :rtype: str
-        """
         res = []
 
-        # preorder traversal
         def dfs(node):
             if not node:
                 res.append(NULL)
@@ -39,11 +35,6 @@ class Codec:
         return SEP.join(res)
 
     def deserialize(self, data):
-        """Decodes your encoded data to tree.
-
-          :type data: str
-          :rtype: TreeNode
-          """
         nodes = data.split(SEP)[::-1]
 
         def dfs():
