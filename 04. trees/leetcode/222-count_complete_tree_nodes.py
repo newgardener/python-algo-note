@@ -1,5 +1,12 @@
 from typing import Optional
 
+"""
+Time Complexity: 
+- while part: O(logN)
+- depth of recursive function: O(logN)
+=> O(logNlogN)
+"""
+
 
 class TreeNode:
     def __init__(self, x):
