@@ -48,24 +48,16 @@ class WordDictionary:
             node.isEnd = True
 
         def search(self, word: str) -> bool:
-            def dfs(i, node):
-                curr = node
-                for j in range(i, len(word)):
-                    ch = word[j]
-                    if ch == ".":
-                        for child in curr.children.values():
-                            if dfs(j + 1, child):
-                                return True
+            def dfs(node, i):
+                ch = word[i]
+                if ch == ".":
+                    for child in node.children.values():
+                        if dfs(child, i + 1):
+                            return True
+                    return False
+                else:
+                    if ch not in node.children:
                         return False
-                    else:
-                        if ch not in curr.children:
-                            return False
-                        curr = curr.children[ch]
-                return curr.isEnd
+                    return dfs(node.children[ch], i + 1)
 
-            return dfs(0, self.root)
-
-    # Your WordDictionary object will be instantiated and called as such:
-    # obj = WordDictionary()
-    # obj.addWord(word)
-    # param_2 = obj.search(word)
+            return dfs(self.root, 0)
