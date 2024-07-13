@@ -4,7 +4,7 @@ from typing import List
 class TrieNode:
     def __init__(self):
         self.children = {}
-        self.isEndOfWord = False
+        self.word = None
 
 
 class Solution:
@@ -15,20 +15,19 @@ class Solution:
                 if ch not in node.children:
                     node.children[ch] = TrieNode()
                 node = node.children[ch]
-            node.isEndOfWord = True
+            node.word = word
 
     def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
         m, n = len(board), len(board[0])
         root = TrieNode()
         result = []
-        visited = set()
 
         # add words to a trie
         self.addWord(root, words)
 
         def dfs(r, c, node, path):
             # out of bound or already visited
-            if r >= m or r < 0 or c >= n or c < 0 or (r, c) in visited:
+            if r >= m or r < 0 or c >= n or c < 0 or board[r][c] == '#':
                 return False
 
             ch = board[r][c]
@@ -38,16 +37,17 @@ class Solution:
             # found a word
             # NOTICE: should not return after finding a word!
             # because there would be longer words containing the found word as a prefix
-            if nextNode.isEndOfWord:
-                result.append(path + board[r][c])
-                nextNode.isEndOfWord = False
+            if nextNode.word:
+                result.append(nextNode.word)
+                nextNode.word = None
 
-            visited.add((r, c))
+            original = board[r][c]
+            board[r][c] = '#'
             dfs(r - 1, c, nextNode, path + board[r][c])
             dfs(r + 1, c, nextNode, path + board[r][c])
             dfs(r, c - 1, nextNode, path + board[r][c])
             dfs(r, c + 1, nextNode, path + board[r][c])
-            visited.remove((r, c))
+            board[r][c] = original
 
         for r in range(m):
             for c in range(n):
