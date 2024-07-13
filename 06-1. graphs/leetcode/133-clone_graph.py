@@ -1,5 +1,13 @@
 from collections import deque
 
+"""
+Both BFS, DFS approach ensures we go through each node once
+
+Time Complexity:
+N - number of nodes, E - number of edges
+=> O(N+E)
+"""
+
 
 class Node:
     def __init__(self, val=0, neighbors=None):
@@ -14,11 +22,6 @@ from typing import Optional
 BFS approach:
 - clonedNode hashmap keeps track of visited nodes and its clones
 - iterate neighbors of each node and if not visited, create a clone and add to a queue
-- this ensures we only go through each node once
-
-Time Complexity:
-N - number of nodes, E - number of edges
-=> O(N+E)
 """
 
 
@@ -41,8 +44,30 @@ class Solution:
 
 
 # %%
-# DFS approach
+"""
+DFS approach:
+- clonedNode hashmap keeps track of visited nodes and its clones
+- check if the node is cloned
+- if not, recursively clones all neighbors of the node and returns the cloned node  
+"""
+
+
 class Solution:
     def cloneGraph(self, node: Optional[Node]) -> Optional[Node]:
         if not node:
             return None
+
+        clonedNode = {}
+
+        def dfs(node):
+            # base condition
+            if node in clonedNode:
+                return clonedNode[node]
+
+            cloned = Node(node.val)
+            clonedNode[node] = cloned
+            for neighbor in node.neighbors:
+                cloned.neighbors.append(dfs(neighbor))
+            return cloned
+
+        return dfs(node)
