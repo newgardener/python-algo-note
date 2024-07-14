@@ -1,5 +1,9 @@
 # https://leetcode.com/problems/open-the-lock
 
+"""
+TODO: 양방향 BFS를 적용한 solution에 대해서도 고민해봐야함
+"""
+
 from collections import deque
 
 
