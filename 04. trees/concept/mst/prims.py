@@ -26,7 +26,7 @@ class Graph:
                 continue
 
             visited.add(u)
-            total_cost += cost
+            mst_cost += cost
             mst.append((u, cost))
 
             for v, weight in self.graph[u]:
