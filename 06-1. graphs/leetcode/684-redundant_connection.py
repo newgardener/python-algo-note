@@ -32,6 +32,12 @@ class Solution:
 
 
 # %%
+"""
+Time Complexity: O(a(n))
+where a(n) is the inverse Ackermann function, which grows very slowly and is effectively constant for all practical values in n
+"""
+
+
 class UnionFind:
     def __init__(self, size):
         self.parent = list(range(size))
