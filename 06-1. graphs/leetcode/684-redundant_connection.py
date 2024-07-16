@@ -33,8 +33,9 @@ class Solution:
 
 # %%
 """
-Time Complexity: O(a(n))
-where a(n) is the inverse Ackermann function, which grows very slowly and is effectively constant for all practical values in n
+Time Complexity: O(n * a(n)) 
+- union-find handles find operation with a(n) time complexity where a is the inverse Ackermann function, 
+which grows very slowly and is effectively constant for all practical values in n
 """
 
 

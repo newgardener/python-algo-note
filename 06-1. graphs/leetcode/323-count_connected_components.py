@@ -1,5 +1,12 @@
 from typing import List
 
+"""
+Time Complexity:
+- find(x): recursively finds the root of x with path compression with O(a(n))
+- union(x, y): unites the sets containing x and y using union by rank with O(a(n))
+=> O(m * a(n)) where m is the number of edges and a is the inverse Ackermann function 
+"""
+
 
 class Solution:
     def countComponents(self, n: int, edges: List[List[int]]) -> int:
