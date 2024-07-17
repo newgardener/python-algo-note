@@ -1,4 +1,10 @@
+from collections import defaultdict
 from typing import List
+
+# %%
+"""
+Union-Find Solution
+"""
 
 
 class Solution:
@@ -36,3 +42,36 @@ class Solution:
         for u, v in edges:
             res -= union(u, v)
         return res
+
+
+# %%
+"""
+DFS Solution
+"""
+
+
+class Solution:
+    def findCircleNum(self, isConnected: List[List[int]]) -> int:
+        n = len(isConnected)
+        graph = defaultdict(list)
+        visited = set()
+
+        # undirected graph
+        for i in range(n):
+            for j in range(n):
+                if isConnected[i][j]:
+                    graph[i].append(j)
+
+        def dfs(node):
+            for cnode in graph[node]:
+                if cnode not in visited:
+                    visited.add(cnode)
+                    dfs(cnode)
+
+        cnt = 0
+        for node in graph:
+            if node not in visited:
+                cnt += 1
+                visited.add(node)
+                dfs(node)
+        return cnt
