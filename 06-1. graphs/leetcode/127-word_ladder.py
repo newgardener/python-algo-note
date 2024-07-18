@@ -1,6 +1,14 @@
 from collections import defaultdict, deque
 from typing import List
 
+"""
+Time Complexity:
+n = len(wordList), m = length of the word
+preprocessing (patternDict): O(n * m)
+BFS: O(n * m * n) = O(n^2 * m) in worst case scenario
+   - matching words for each pattern can vary, but it's upper-bounded by n which is len(wordList)
+"""
+
 
 class Solution:
     def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
