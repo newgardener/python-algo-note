@@ -6,7 +6,7 @@ class Solution:
     def swimInWater(self, grid: List[List[int]]) -> int:
         n = len(grid)
         pq = [(grid[0][0], 0, 0)]
-        visited = set([(0, 0)])
+        visited = {(0, 0)}
         minTime = 0
 
         while pq:
