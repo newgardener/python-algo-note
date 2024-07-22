@@ -1,6 +1,18 @@
-import collections
-from collections import defaultdict
+from collections import defaultdict, deque
 from typing import List
+
+"""
+Time Complexity:
+C = total # of characters in words, K = # of unique characters in words
+- form a graph: compare characters until we find a difference or reach the end of the word => O(C)
+- topological sort: process each unique character(=K) once and update its neighbors at most C-1 O(K+C)
+=> O(C)
+
+Space Complexity:
+O(K) = O(1) 
+
+* K <= 26 which is constant (lowercase English letter)
+"""
 
 
 class Solution:
@@ -28,7 +40,7 @@ class Solution:
                     indegree[ch2] += 1
 
         # topological sort
-        q = collections.deque([node for node in graph if graph[node] == 0])
+        q = deque([node for node in graph if graph[node] == 0])
         order = []
         while q:
             ch = q.popleft()
