@@ -1,6 +1,13 @@
 import heapq
 from typing import List
 
+"""
+create MST problem => apply Kruskal's algorithm
+Time Complexity: 
+- sort edges: O(ElogE) or at most O(ElogV)
+Space Complexity: O(V)
+"""
+
 
 class Solution:
     def minCostConnectPoints(self, points: List[List[int]]) -> int:
