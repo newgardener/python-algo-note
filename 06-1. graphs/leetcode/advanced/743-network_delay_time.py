@@ -2,6 +2,12 @@ import heapq
 from collections import defaultdict
 from typing import List
 
+"""
+shortest path from source to target node -> Dijikstra's algorithm
+Time Complexity: O((V+E)logV)
+Space Complexity: O(V)
+"""
+
 
 class Solution:
     def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
@@ -13,6 +19,7 @@ class Solution:
         distances = {node: float('infinity') for node in range(1, n + 1)}
         while pq:
             dist, node = heapq.heappop(pq)
+            # skip if distances[node] is smaller
             if dist > distances[node]:
                 continue
 
