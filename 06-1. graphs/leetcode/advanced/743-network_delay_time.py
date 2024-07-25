@@ -23,10 +23,10 @@ class Solution:
             if dist > distances[node]:
                 continue
 
-            distances[node] = dist
             for neighbor, weight in graph[node]:
                 distance = dist + weight
                 if distance < distances[neighbor]:
+                    distances[neighbor] = dist
                     heapq.heappush(pq, (distance, neighbor))
 
             res = max(list(distances.values()))

@@ -10,7 +10,7 @@ class Solution:
             graph[frm].append((to, price))
 
         # initialize distance of each node for (k+2) stops
-        distances = [[float('infinity')] * (k + 1) for _ in range(n)]
+        distances = [[float('infinity')] * (k + 2) for _ in range(n)]
 
         # (cost, city, stops)
         pq = [(0, src, 0)]
@@ -19,15 +19,14 @@ class Solution:
 
             if city == dst:
                 return cost
+
             # over k stops case
             if stops > k:
                 continue
             # dijikstra's skip condition
-            if cost < distances[city][stops]:
+            if cost > distances[city][stops]:
                 continue
 
-            # update distances
-            distances[city][stops] = cost
             for neighbor, price in graph[city]:
                 newCost = cost + price
                 newStops = stops + 1
