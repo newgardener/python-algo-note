@@ -31,6 +31,7 @@ class Solution:
                 newCost = cost + price
                 newStops = stops + 1
                 if newCost < distances[neighbor][newStops]:
+                    # where aggressive pruning happens => shrink search space
                     distances[neighbor][newStops] = newCost
                     heapq.heappush(pq, (newCost, neighbor, newStops))
 
