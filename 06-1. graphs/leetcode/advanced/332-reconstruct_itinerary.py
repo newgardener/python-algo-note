@@ -1,6 +1,15 @@
 from collections import defaultdict
 from typing import List
 
+# %%
+"""
+DFS + Backtracking Solution => but hit TLE why?
+N = # of tickets, K = max # of dst from src
+Time Complexity: O(N^K) at worst it can explore all possible paths
+Space Complexity: O(N)
+
+"""
+
 
 class Solution:
     def findItinerary(self, tickets: List[List[str]]) -> List[str]:
