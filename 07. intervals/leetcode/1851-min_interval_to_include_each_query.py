@@ -1,6 +1,14 @@
 from collections import defaultdict
 from typing import List
 
+"""
+Why it is not working?
+edge case found when 
+intervals=[[6,6],[5,5],[10,10],[3,6],[9,9],[7,7],[2,10],[5,5],[3,7],[10,10]],
+queries=[1,8,9,1,8,3,9,3,10,1]
+=> by binary search, we cannot get to the smallest target interval
+"""
+
 
 class Solution:
     def minInterval(self, intervals: List[List[int]], queries: List[int]) -> List[int]:
