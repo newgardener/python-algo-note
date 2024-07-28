@@ -1,3 +1,17 @@
+"""
+Time Complexity: O(N)
+Space Complexity: O(N)
+"""
+
+# %%
+
+
+"""
+- set to keep track of occurrences of each character
+- stack to record the order of characters
+"""
+
+
 def removeDuplicateLetters(s: str) -> str:
     count = {char: s.count(char) for char in set(s)}
     result = []  # stack for the result string
@@ -12,6 +26,13 @@ def removeDuplicateLetters(s: str) -> str:
         count[char] -= 1
 
     return "".join(result)
+
+
+# %%
+
+"""
+- set to record the last occurrence of each character
+"""
 
 
 def removeDuplicateLetters(s: str) -> str:
