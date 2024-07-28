@@ -1,6 +1,13 @@
 from heapq import heappop, heappush
 from typing import List
 
+"""
+It hits TLE why?
+- it is considering all possible jumps at each index
+  - which can lead to O(N^2) time complexity at worst
+- how to iterate the array only once in order to make time complexity O(N)
+"""
+
 
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
