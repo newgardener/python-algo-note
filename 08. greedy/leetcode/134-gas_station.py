@@ -4,22 +4,19 @@ from typing import List
 class Solution:
     def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
         n = len(gas)
+        # cannot complete case
         if sum(gas) < sum(cost):
             return - 1
 
-        startIndices = [index for index, value in enumerate(cost) if cost[index] <= gas[index]]
-        for idx in startIndices:
-            start = idx
-            fuel = gas[idx]
-            result = True
-            for i in range(start, start + n):
-                i = i % n
-                if fuel < cost[i]:
-                    result = False
-                    break
-                fuel = fuel + gas[(i + 1) % n] - cost[i]
+        # can complete case
+        start = 0  # starting point
+        total = 0  # record surplus
+        for i in range(n):
+            total += gas[i] - cost[i]
 
-            if result == True:
-                return start if fuel >= cost[start] else -1
+            # reset
+            if total < 0:
+                total = 0
+                start = i + 1
 
-        return - 1
+        return start
