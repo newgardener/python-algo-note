@@ -1,5 +1,12 @@
 from typing import List
 
+"""
+Take-Away:
+- find the shortest path from src to dst => apply BFS (level-by-level traversal)
+
+Time Complexity: O(N) 
+"""
+
 
 def jump(nums: List[int]) -> int:
     res = 0
