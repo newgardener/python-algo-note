@@ -5,6 +5,13 @@ Why we should use mask?
 ㄴ 32-bit mask helps us simulate 32-bit integer
 """
 
+"""
+Take-Away:
+- XOR (a ^ b): sum without carry
+- AND + LEFT SHIFT (a & b) << 1: calculate the carry
+- repeat until there is no more carries
+"""
+
 
 class Solution:
     def getSum(self, a: int, b: int) -> int:
