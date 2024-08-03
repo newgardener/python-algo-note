@@ -29,6 +29,13 @@ class Solution:
 
 
 # %%
+
+"""
+DP solution
+- Time Complexity: O(N^2)
+"""
+
+
 class Solution:
     def checkValidString(self, s: str) -> bool:
         dp = {(len(s), 0): True}  # (index, left parenthesis count)
