@@ -1,3 +1,15 @@
+# %%
+
+"""
+Greedy Solution
+- Time Complexity: O(N)
+
+Take-Away:
+- manage left parenthesis count as a range => [leftMin, leftMax]
+- if leftMin is 0 at the end, this ensures that there is a possible valid parenthesis case
+"""
+
+
 class Solution:
     def checkValidString(self, s: str) -> bool:
         leftMin, leftMax = 0, 0
