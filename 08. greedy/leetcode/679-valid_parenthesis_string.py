@@ -26,3 +26,28 @@ class Solution:
             if leftMin < 0:
                 leftMin = 0
         return leftMin == 0
+
+
+# %%
+class Solution:
+    def checkValidString(self, s: str) -> bool:
+        dp = {(len(s), 0): True}  # (index, left parenthesis count)
+
+        def dfs(i, left):
+            # check whether left < 0
+            # in order to early-return invalid case like )(*
+            if i == len(s) or left < 0:
+                return left == 0
+            if (i, left) in dp:
+                return dp[(i, left)]
+
+            if s[i] == "(":
+                dp[(i, left)] = dfs(i + 1, left + 1)
+            elif s[i] == ")":
+                dp[(i, left)] = dfs(i + 1, left - 1)
+            else:
+                # in wild card case, we have three choices - left, None, right
+                dp[(i, left)] = dfs(i + 1, left + 1) or dfs(i + 1, left) or dfs(i + 1, left - 1)
+            return dp[(i, left)]
+
+        return dfs(0, 0)
