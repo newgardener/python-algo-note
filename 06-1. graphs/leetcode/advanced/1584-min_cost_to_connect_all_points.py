@@ -37,10 +37,10 @@ class Solution:
             # make them into a union
             if rank[px] > rank[py]:
                 parents[py] = px
-                rank[px] += rank[py]
+                rank[px] += rank[py] + 1
             else:
                 parents[px] = py
-                rank[py] += rank[px]
+                rank[py] += rank[px] + 1
             return True
 
         # sort edges in an ascending distance order
