@@ -1,6 +1,8 @@
 from typing import List
 
 
+# %%
+# 2D DP Solution
 class Solution:
     def change(self, amount: int, coins: List[int]) -> int:
         n = len(coins)
@@ -21,3 +23,15 @@ class Solution:
                     dp[i][w] = dp[i - 1][w]
 
         return dp[n][amount]
+
+
+# %%
+# 1D DP Solution
+class Solution:
+    def change(self, amount: int, coins: List[int]) -> int:
+        dp = [0] * (amount + 1)
+        for i in range(len(coins)):
+            for w in range(1, amount + 1):
+                if w >= coins[i]:
+                    dp[w] += dp[w - coins[i]]
+        return dp[amount]
