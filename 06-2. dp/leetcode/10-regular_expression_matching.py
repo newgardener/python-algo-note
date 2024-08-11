@@ -1,3 +1,14 @@
+"""
+Time Complexity of DP Problem = (# of state) x (time taken fo reach recursion)
+- consider time complexity for base case is constant (as it has bounded call)
+- # of state = m * n
+- so, overall time complexity of this problem is O(m*n)
+
+Space Complexity: O(m * n)
+- 2D table for memoization
+"""
+
+
 class Solution:
     def isMatch(self, s: str, p: str) -> bool:
         m, n = len(s), len(p)
