@@ -1,3 +1,12 @@
+"""
+state: dp[i][j] is the minimum edit distance until (i, j)
+choices: replace, insert, delete if not matched
+
+Time Complexity: O(M*N)
+Space Complexity: O(M*N)
+"""
+
+
 # %%
 # 2D DP Solution
 
