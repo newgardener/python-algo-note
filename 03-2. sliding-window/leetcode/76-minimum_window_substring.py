@@ -1,6 +1,6 @@
 """
 Time Complexity: O(N)
-ㄴkey point: compare one character at a time whether it meets the required condition
+ㄴ key point: compare one character at a time whether it meets the required condition
 """
 
 
@@ -39,4 +39,4 @@ def minWindow(s: str, t: str) -> str:
             l += 1
 
     l, r = res
-    return s[l : r + 1]
+    return s[l: r + 1]
