@@ -25,7 +25,7 @@ def findTargetSumWays(nums: List[int], target: int) -> int:
 
 
 # %%
-# 2D (knapsack 0-1)
+# 2D DP
 
 """
 sum(A): + set, sum(B): - set
@@ -43,6 +43,7 @@ dp[n][numToReach]
 def findTargetSumWays(nums: List[int], target: int) -> int:
     total = sum(nums)
     n = len(nums)
+    # edge case
     if total < abs(target) or (total + target) % 2 == 1:
         return 0
     numToReach = (total + target) // 2
@@ -63,3 +64,25 @@ def findTargetSumWays(nums: List[int], target: int) -> int:
             else:
                 dp[i][j] = dp[i - 1][j]
     return dp[n][numToReach]
+
+
+# %%
+# 1D DP
+
+def findTargetSumWays(nums: List[int], target: int) -> int:
+    total = sum(nums)
+    n = len(nums)
+    # edge case
+    if total < abs(target) or (total + target) % 2 == 1:
+        return 0
+    numToReach = (total + target) // 2
+
+    dp = [0] * (numToReach + 1)
+    for i in range(n):
+        # 이전 결과가 이후 결과에 영향을 미치면 안되기 때문에 역방향으로 순회 (각 숫자는 한 번씩만 사용 가능)
+        for j in range(numToReach, -1, -1):
+            if j >= nums[i]:
+                # dp[j]: 배낭에 넣지 않기
+                # dp[j-nums[i]]: 배낭에 넣기
+                dp[j] = dp[j] + dp[j - nums[i]]
+    return dp[numToReach]
