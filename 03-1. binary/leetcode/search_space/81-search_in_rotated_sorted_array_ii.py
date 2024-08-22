@@ -1,5 +1,11 @@
 from typing import List
 
+"""
+number array (nums) allows duplicates
+=> only by comparing nums[mid] and nums[l], it's hard to notify left or right sorted portion
+=> we need to find the pivot index directly
+"""
+
 
 def search(self, nums: List[int], target: int) -> bool:
     def get_pivot():

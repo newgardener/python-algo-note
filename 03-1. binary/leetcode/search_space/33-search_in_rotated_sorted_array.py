@@ -1,7 +1,7 @@
 from typing import List
 
 """
-number array (num) does not allow duplicates
+number array (nums) does not allow duplicates
 => by comparing nums[mid] and nums[l], we can know whether we are in left sorted portion or right sorted portion
 """
 
