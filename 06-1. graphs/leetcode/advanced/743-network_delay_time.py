@@ -16,7 +16,7 @@ class Solution:
             graph[u].append((v, w))
 
         pq = [(0, k)]
-        distances = {node: float('infinity') for node in range(1, n + 1)}
+        distances = {node: float("infinity") for node in range(1, n + 1)}
         while pq:
             dist, node = heapq.heappop(pq)
             # skip if distances[node] is smaller
@@ -30,4 +30,4 @@ class Solution:
                     heapq.heappush(pq, (distance, neighbor))
 
             res = max(list(distances.values()))
-            return res if res != float('infinity') else -1
+            return res if res != float("infinity") else -1
