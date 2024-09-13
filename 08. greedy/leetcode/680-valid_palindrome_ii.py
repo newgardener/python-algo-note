@@ -5,7 +5,7 @@ def validPalindrome(s: str) -> bool:
                 return False
             left += 1
             right -= 1
-        return False
+        return True
 
     i, j = 0, len(s) - 1
     while i < j:
