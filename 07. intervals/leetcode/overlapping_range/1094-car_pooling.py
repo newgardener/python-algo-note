@@ -1,6 +1,9 @@
 """
 Similar to meeting room ii problem
 ㄴ with capacity constraint added
+
+# Take-away: hard to set one standard either startTime, endTime
+=> iterate through startTime, endTime sorted array each using two-pointer
 """
 
 
