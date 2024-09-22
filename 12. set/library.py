@@ -60,3 +60,16 @@ print(a.issubset(b))
 a = {1, 2}
 b = {1, 2, 3}
 print(b.issuperset(a))
+
+# %%
+# array item deduplication using set
+
+arr = [[1, 2], [1, 2]]
+
+# convert inner list to tuple to make a set
+unique_set = set(map(tuple, arr))
+print(f"unique_set: {unique_set}")
+
+# convert back to list of lists
+result = list(map(list, unique_set))
+print(f"result: {result}")
