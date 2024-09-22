@@ -9,7 +9,7 @@ def carPooling(self, trips: list[list[int]], capacity: int) -> bool:
     ends = sorted([(trip[2], -trip[0]) for trip in trips])
 
     l, r = 0, 0
-    total, cnt = 0, 0
+    cnt = 0
     while l < len(trips):
         if starts[l][0] < ends[r][0]:
             cnt += starts[l][1]
@@ -17,7 +17,6 @@ def carPooling(self, trips: list[list[int]], capacity: int) -> bool:
         else:
             cnt += ends[r][1]
             r += 1
-        total = max(total, cnt)
-        if total > capacity:
+        if cnt > capacity:
             return False
     return True
