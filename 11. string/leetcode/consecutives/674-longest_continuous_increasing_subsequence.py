@@ -8,9 +8,10 @@ Space Complexity: O(1)
 
 
 def findLengthOfLCIS(nums: List[int]) -> int:
-    res, left = 0, 0
-    for i in range(len(nums)):
-        if i and nums[i - 1] >= nums[i]:
-            left = i
-        res = max(res, i - left + 1)
+    l = 0
+    res = 0
+    for r in range(len(nums)):
+        if r > 0 and nums[r - 1] >= nums[r]:
+            l = r
+        res = max(res, r - l + 1)
     return res
