@@ -13,6 +13,7 @@ def maximumCandies(candies: list[int], k: int) -> int:
         if piles < k:
             r = mid
         else:
+            # find maximum candy to allocate for k children (rightmost search)
             max_candy = max(max_candy, mid)
             l = mid + 1
     return max_candy
