@@ -24,3 +24,4 @@ class Solution:
         root.left = self.buildTree(preorder[1:mid + 1], inorder[:mid])
         root.right = self.buildTree(preorder[mid + 1:], inorder[mid + 1:])
         return root
+ㅠ
