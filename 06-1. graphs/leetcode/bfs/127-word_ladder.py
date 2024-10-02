@@ -15,7 +15,7 @@ class Solution:
         if endWord not in wordList:
             return 0
 
-        # create generic states of each word using "*"
+        # create generic states of each word using "*" (wild card)
         patternDict = defaultdict(list)
         for word in wordList:
             for i in range(len(word)):
