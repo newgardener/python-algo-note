@@ -7,6 +7,7 @@ class ListNode:
         self.next = None
 
 
+# find a point where cycle starts
 def detectCycle(head: Optional[ListNode]) -> Optional[ListNode]:
     slow = fast = head
     while fast and fast.next:
