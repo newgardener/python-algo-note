@@ -14,18 +14,18 @@ Space Complexity: O(N)
 
 def removeDuplicateLetters(s: str) -> str:
     count = {char: s.count(char) for char in set(s)}
-    result = []  # stack for the result string
+    stack = []  # stack for the result string
     present = set()  # set to track if a character is in the result
 
     for char in s:
         if char not in present:
-            while result and char < result[-1] and count[result[-1]] > 0:
-                present.remove(result.pop())
-            result.append(char)
+            while stack and char < stack[-1] and count[stack[-1]] > 0:
+                present.remove(stack.pop())
+            stack.append(char)
             present.add(char)
         count[char] -= 1
 
-    return "".join(result)
+    return "".join(stack)
 
 
 # %%
