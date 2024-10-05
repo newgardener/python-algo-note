@@ -1,8 +1,7 @@
 import bisect
-from typing import List
 
 
-def jobScheduling(startTime: List[int], endTime: List[int], profit: List[int]) -> int:
+def jobScheduling(startTime: list[int], endTime: list[int], profit: list[int]) -> int:
     jobs = sorted(zip(startTime, endTime, profit))
     dp = {}
 

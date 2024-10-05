@@ -27,6 +27,8 @@ class Solution:
 class Solution:
     def change(self, amount: int, coins: List[int]) -> int:
         dp = [0] * (amount + 1)
+        # base case: 금액 0을 만드는 방법 => 동전 안쓰기
+        dp[0] = 1
         for i in range(len(coins)):
             for w in range(1, amount + 1):
                 if w >= coins[i]:
