@@ -14,6 +14,7 @@ def countFairPairs(nums: list[int], lower: int, upper: int) -> int:
             if nums[l] + nums[r] > target:
                 r -= 1
             else:
+                # ex. [0 (l), 1, 4, 4, 5 (r)] if nums[l] + nums[r] <= target, we can ensure that (l, [l+1, r]) is a valid pair
                 res += r - l
                 l += 1
         return res
