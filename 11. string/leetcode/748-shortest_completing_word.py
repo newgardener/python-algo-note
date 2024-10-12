@@ -9,6 +9,5 @@ def shortestCompletingWord(licensePlate: str, words: list[str]) -> str:
 
     words.sort(key=len)
     for w in words:
-        w_cnt = Counter(w)
-        if all(ch in w_cnt and w_cnt[ch] >= counts[ch] for ch in counts.keys()):
+        if all(ch in w and w.count(ch) >= counts[ch] for ch in counts.keys()):
             return w
