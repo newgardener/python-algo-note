@@ -1,14 +1,11 @@
-from ast import List
-
-
 class Solution:
-    def encode(self, strs: List[int]) -> str:
+    def encode(self, strs: list[int]) -> str:
         res = ""
         for s in strs:
             res += str(len(s)) + "#" + s
         return res
 
-    def decode(self, s: str) -> List[str]:
+    def decode(self, s: str) -> list[str]:
         res = []
         i = 0
 
