@@ -8,7 +8,7 @@ def numSubarrayProductLessThanK(nums: list[int], k: int) -> int:
         if subProduct < k:
             cnt += r - l + 1  # ex. [1,2,3] all possible subarray is [1], [1,2], [1,2,3]
         else:
-            while l < r and subProduct >= k:
+            while l <= r and subProduct >= k:
                 subProduct //= nums[l]
                 l += 1
 
