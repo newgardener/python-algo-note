@@ -3,6 +3,7 @@ import bisect
 
 def jobScheduling(startTime: list[int], endTime: list[int], profit: list[int]) -> int:
     jobs = sorted(zip(startTime, endTime, profit))
+    startTimes = [job[0] for job in jobs]
     dp = {}
 
     def dfs(i):
@@ -16,7 +17,7 @@ def jobScheduling(startTime: list[int], endTime: list[int], profit: list[int]) -
         res = dfs(i + 1)
 
         # include
-        j = bisect.bisect(jobs, (jobs[i][1], -1, -1))
+        j = bisect.bisect_left(startTimes, jobs[i][1])
         dp[i] = max(res, jobs[i][2] + dfs(j))
         return dp[i]
 
