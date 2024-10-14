@@ -12,7 +12,7 @@ def unboundedKnapsack(W, weights, values):
     for w in range(1, W + 1):
         # we can use items unlimitedly
         for i in range(n):
-            if weights[i] <= w:
+            if w >= weights[i]:
                 dp[w] = max(dp[w], dp[w - weights[i]] + values[i])
     return dp[W]
 

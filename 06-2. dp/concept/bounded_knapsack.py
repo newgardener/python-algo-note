@@ -14,7 +14,8 @@ def boundedKnapsack(W, weights, values):
     for i in range(n):
         # we need to go backwards to avoid using the same items multiple times
         for w in range(W, weights[i] - 1, -1):
-            dp[w] = max(dp[w], dp[w - weights[i]] + values[i])
+            if w >= weights[i]:
+                dp[w] = max(dp[w], dp[w - weights[i]] + values[i])
     return dp[W]
 
 
@@ -31,5 +32,5 @@ def boundedKnapsack2D(W, weights, values):
                     dp[i - 1][w], dp[i - 1][w - weights[i - 1]] + values[i - 1]
                 )
             else:
-                dp[i][w] = dp[i - 1][2]
+                dp[i][w] = dp[i - 1][w]
     return dp[n][W]
