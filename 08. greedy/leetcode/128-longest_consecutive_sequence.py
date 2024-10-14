@@ -1,4 +1,4 @@
-# https://leetcode.com/problems/longest-consecutive-sequence/solutions/41055/my-really-simple-java-o-n-solution-accepted/
+# https://leetcode.com/problems/longest-consecutive-sequence
 
 from typing import List
 
