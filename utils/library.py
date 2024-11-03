@@ -234,3 +234,22 @@ result = roundrobin("ABC", "D", "EF")
 print(result, *result)
 
 # %%
+from sortedcontainers import SortedList
+
+sl = SortedList([3, 1, 4, 1, 5])
+
+# Insert - O(log n)
+sl.add(2)
+# Remove - O(log n)
+sl.remove(1)
+# Access - O(1)
+first = sl[0]
+last = sl[-1]
+
+# Binary Search
+left_idx = sl.bisect_left(3) # inclusive
+right_idx = sl.bisect_right(3) # exclusive
+count = right_idx - left_idx
+
+# Find index
+idx = sl.index(4)
