@@ -1,14 +1,17 @@
 def lengthOfLongestSubstring(s: str) -> int:
-    result = 0
-    i, j = 0, 0
-    subset = set([])
+    maxLength = 0
+    window = set()
+    l = 0
+    for r, ch in enumerate(s):
+        if ch not in window:
+            window.add(ch)
+        else:
+            while s[l] != ch:
+                window.remove(s[l])
+                l += 1
+            l += 1
+        maxLength = max(maxLength, r - l + 1)
+    return maxLength
 
-    while j < len(s):
-        while s[j] in subset:
-            subset.remove(s[i])
-            i += 1
-        result = max(result, j - i + 1)
-        subset.add(s[j])
-        j += 1
 
-    return result
+
