@@ -13,23 +13,26 @@ class TreeNode:
         self.right = right
 
 
+# separation of concerns: subtree matching, tree traversal
 class Solution:
     def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
-        if not subRoot:
-            return True
-        if not root:
+        # 1. subtree matching
+        def dfs(p, q):
+            if not p and not q:
+                return True
+            if not p or not q:
+                return False
+            # check only relevant subtrees starting from the potential matches in the root tree
+            # avoid unnecessary search
+            if p.val == q.val:
+                return dfs(p.left, q.left) and dfs(p.right, q.right)
             return False
 
-        # root and subRoot is the same tree
-        if self.isSameTree(root, subRoot):
+        # 2. tree traversal
+        if not root:
+            return False
+        # check if root node's subtree matches with subRoot
+        if dfs(root, subRoot):
             return True
-        return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)
 
-    def isSameTree(self, t1, t2):
-        if not t1 and not t2:
-            return True
-        if t1 and t2 and t1.val == t2.val:
-            return self.isSameTree(t1.left, t2.left) and self.isSameTree(
-                t1.right, t2.right
-            )
-        return False
+        return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)
