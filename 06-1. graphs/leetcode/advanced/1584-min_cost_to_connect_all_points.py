@@ -34,13 +34,14 @@ class Solution:
             # already a union
             if px == py:
                 return False
-            # make them into a union
+
             if rank[px] > rank[py]:
                 parents[py] = px
-                rank[px] += rank[py] + 1
-            else:
+            elif rank[px] < rank[py]:
                 parents[px] = py
-                rank[py] += rank[px] + 1
+            else:
+                parents[py] = px
+                rank[px] += 1
             return True
 
         # sort edges in an ascending distance order
