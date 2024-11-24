@@ -11,8 +11,6 @@ class Solution:
         for u, v in enumerate(edges):
             graph[u].append(v)
             in_degree[v] += 1
-            if u not in in_degree:
-                in_degree[u] = 0
         return graph, in_degree
 
     def topological_sort(self, n, graph, in_degree):
