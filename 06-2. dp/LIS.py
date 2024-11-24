@@ -1,30 +1,6 @@
 # %%
 """
 1D problem
-O(n^2) solution
-"""
-
-
-def _lengthOfLIS(nums):
-    dp = [1 for _ in range(len(nums))]
-
-    for i in range(len(nums)):
-        for j in range(i):
-            if nums[i] > nums[j]:
-                dp[i] = max(dp[i], dp[j] + 1)
-
-    res = 0
-    for i in range(len(dp)):
-        res = max(res, dp[i])
-    return res
-
-
-print(_lengthOfLIS([1, 4, 3, 4, 2, 3]))
-
-
-# %%
-"""
-1D problem
 O(nlogn) solution
 apply binary search
 """
