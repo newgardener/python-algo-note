@@ -28,7 +28,7 @@ k = 4
 heapq.heapify(nums)
 for _ in range(len(nums) - k):
     heapq.heappop(nums)
-heapq.heappop(nums)  # Kth largest num
+print(heapq.heappop(nums))  # Kth largest num
 
 # %% nlargest
 import heapq

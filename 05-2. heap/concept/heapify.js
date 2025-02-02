@@ -67,9 +67,21 @@ class MinPriorityQueue {
             if (smallest === index) break
 
             this.swap(index, smallest)
+            index = smallest
         }
-
     }
 
-
+    peek() {
+        return this.heap.length === 0 ? null : this.heap[0]
+    }
 }
+
+// Example Usage
+const pq = new MinPriorityQueue();
+pq.insert("Task A", 2);
+pq.insert("Task B", 1);
+pq.insert("Task C", 5);
+
+console.log(pq.extractMin()); // { value: 'Task B', priority: 1 }
+console.log(pq.peek());       // { value: 'Task A', priority: 2 }
+console.log(pq.extractMin()); // { value: 'Task A', priority: 2 }
