@@ -29,6 +29,8 @@ class Solution:
             if len(w1) > len(w2) and w1[:minLen] == w2[:minLen]:
                 return ""
 
+
+            # this part needs to be fixed ❌ (error)
             result = self.compareWords(w1[:minLen], w2[:minLen])
             # construct graph
             if result:
@@ -40,7 +42,7 @@ class Solution:
                     indegree[ch2] += 1
 
         # topological sort
-        q = deque([node for node in graph if graph[node] == 0])
+        q = deque([node for node in graph if indegree[node] == 0])
         order = []
         while q:
             ch = q.popleft()
