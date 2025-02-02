@@ -1,9 +1,7 @@
 # https://leetcode.com/problems/longest-consecutive-sequence
 
-from typing import List
 
-
-def longestConsecutive(nums: List[int]) -> int:
+def longestConsecutive(nums: list[int]) -> int:
     if not nums:
         return 0
 
@@ -20,7 +18,7 @@ def longestConsecutive(nums: List[int]) -> int:
     return max(list(numDict.values()))
 
 
-def longestConsecutive(nums: List[int]) -> int:
+def longestConsecutive(nums: list[int]) -> int:
     if not nums:
         return 0
 
