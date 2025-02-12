@@ -1,5 +1,4 @@
 import collections
-from typing import List
 
 """
 Time Complexity: O(9^2)
@@ -7,7 +6,7 @@ check all rows, cols, squares whether it only contains 1-9 once
 """
 
 
-def isValidSudoku(board: List[List[str]]) -> bool:
+def isValidSudoku(board: list[list[str]]) -> bool:
     rows = collections.defaultdict(set)
     cols = collections.defaultdict(set)
     squares = collections.defaultdict(set)
