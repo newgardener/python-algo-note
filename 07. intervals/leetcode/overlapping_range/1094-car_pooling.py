@@ -23,3 +23,21 @@ def carPooling(self, trips: list[list[int]], capacity: int) -> bool:
         if cnt > capacity:
             return False
     return True
+
+# time stamping approach
+def _carPooling(trips: list[list[int]], capacity: int) -> bool:
+    timeline = []
+    for trip in trips:
+        timeline.append((trip[1], trip[0]))  # pick up
+        timeline.append((trip[2], -trip[0]))  # drop off
+
+    timeline.sort()
+
+    cnt = 0
+    for time, passenger in timeline:
+        cnt += passenger
+        if cnt > capacity:
+            return False
+    return True
+
+
