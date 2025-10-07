@@ -5,6 +5,8 @@ Find the maximum number of meetings going on "simultaneously"
 # %%
 """
 Two-pointer approach for both starts and ends array
+Time Complexity: O(NlogN)
+Space Complexity: O(N)
 """
 
 
@@ -35,7 +37,9 @@ import heapq
 
 """
 Min-heap approach
-ㄴ sorting using min-heap O(nlogn)
+ㄴ sorting using min-heap O(NlogN)
+Time Complexity: O(NlogN)
+Space Complexity: O(N)
 """
 
 
