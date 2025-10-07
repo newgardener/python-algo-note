@@ -4,15 +4,13 @@ https://leetcode.com/problems/number-of-islands/description/
 
 
 def numIslands(grid: list[list[str]]) -> int:
-    def dfs(row, col):
-        if 0 <= row < len(grid) and 0 <= col < len(grid[0]) and grid[row][col] == "1":
-            grid[row][col] = "0"
-            dfs(row - 1, col)
-            dfs(row + 1, col)
-            dfs(row, col - 1)
-            dfs(row, col + 1)
-
     m, n = len(grid), len(grid[0])
+
+    def dfs(row, col):
+        grid[row][col] = '0'
+        for nr, nc in [(row - 1, col), (row + 1, col), (row, col - 1), (row, col + 1)]:
+            if 0 <= nr < m and 0 <= nc < n and grid[nr][nc] == '1':
+                dfs(nr, nc)
 
     island = 0
     for row in range(m):
