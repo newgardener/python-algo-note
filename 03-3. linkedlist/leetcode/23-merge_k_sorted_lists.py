@@ -1,9 +1,14 @@
 """
+Divide and Conquer
+
 Time Complexity:
 given K = number of linked lists, N = average number of nodes in each linked list
-- total round: O(log K)
-- work per round: O(N * K)
-=> O(N * K * log K)
+Round 1: k/2 merges of 2n nodes each → kn work
+Round 2: k/4 merges of 4n nodes each → kn work
+Round 3: k/8 merges of 8n nodes each → kn work
+...
+Total rounds: log k
+Total: O(kn log k)
 Space Complexity: O(1)
 - only uses a few pointers, regardless of the input size.
 """
@@ -46,3 +51,35 @@ class Solution:
             current.next = l2
         return dummy.next
 
+#%%
+"""
+Min Heap
+
+Time Complexity:
+Total nodes to process: kn
+Each node: 1 heap pop + 1 heap push → 2 log k operations
+Total: O(kn × log k) = O(kn log k)
+Space Complexity: O(k)
+"""
+
+import heapq
+
+class Solution:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        minHeap = []
+        for i, node in enumerate(lists):
+            if node:
+                # should pass index as a time breaker when two nodes have same value
+                heapq.heappush(minHeap, (node.val, i, node))
+
+        dummy = ListNode()
+        current = dummy
+
+        while minHeap:
+            val, idx, node = heapq.heappop(minHeap)
+            current.next = node
+            current = current.next
+            if node.next:
+                heapq.heappush(minHeap, (node.next.val, idx, node.next))
+
+        return dummy.next
