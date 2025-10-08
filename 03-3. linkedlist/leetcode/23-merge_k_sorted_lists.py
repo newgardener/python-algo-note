@@ -1,3 +1,13 @@
+"""
+Time Complexity:
+given K = number of linked lists, N = average number of nodes in each linked list
+- total round: O(log K)
+- work per round: O(N * K)
+=> O(N * K * log K)
+Space Complexity: O(1)
+- only uses a few pointers, regardless of the input size.
+"""
+
 from typing import List, Optional
 
 
@@ -35,3 +45,4 @@ class Solution:
         if l2:
             current.next = l2
         return dummy.next
+
