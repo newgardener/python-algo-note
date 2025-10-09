@@ -3,10 +3,15 @@ from typing import List
 
 """
 Time Complexity:
-n = len(wordList), m = length of the word
-preprocessing (patternDict): O(n * m)
-BFS: O(n * m * n) = O(n^2 * m) in worst case scenario
-   - matching words for each pattern can vary, but it's upper-bounded by n which is len(wordList)
+N = len(wordList), M = the length of each word
+preprocessing (patternDict): O(N * M^2)
+- given there are N words, each of length M word takes O(M) time to create pattern strings
+BFS: O(N * M^2) at worst case
+=> O(N * M^2)
+
+Space Complexity: O(N * M^2)
+- patternDict: O(N * M^2) in worst case, when all words are different and have no common patterns
+- queue and seen set: O(N * M)
 """
 
 
