@@ -30,7 +30,7 @@ def _binarySearch(nums: List[int], target: int):
 
 
 # %%
-def leftBoundedBinarySearch(nums: List[int], target: int):
+def leftmostBinarySearch(nums: List[int], target: int):
     left, right = 0, len(nums)
     while left < right:
         mid = left + (right - left) // 2
@@ -48,7 +48,7 @@ def leftBoundedBinarySearch(nums: List[int], target: int):
 
 
 # %%
-def rightBoundedBinarySearch(nums: List[int], target: int):
+def rightmostBinarySearch(nums: List[int], target: int):
     left, right = 0, len(nums)
     while left < right:
         mid = left + (right - left) // 2

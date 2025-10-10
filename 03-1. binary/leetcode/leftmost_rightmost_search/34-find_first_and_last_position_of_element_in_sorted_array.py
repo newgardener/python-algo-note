@@ -22,9 +22,9 @@ def searchRange(nums: list[int], target: int) -> list[int]:
     l, r = 0, len(nums)
     while l < r:
         mid = l + (r - l) // 2
-        if nums[mid] > target:
-            r = mid
-        else:
+        if nums[mid] <= target:
             l = mid + 1
+        else:
+            r = mid
     rightmost = l - 1 if l - 1 < len(nums) and nums[l - 1] == target else -1
     return [leftmost, rightmost]
