@@ -1,34 +1,33 @@
 from typing import List
 
 """
-Take-Away: define a target efficiently in terms of time and space complexity
-ㄴ creating an array (potions * spell) degrades system performance
+given N is len(potions), M is len(spells),
+Time Complexity: O(NlogM + MlogM)
+Space Complexity: O(M)
 """
 
 
 class Solution:
     def successfulPairs(self, spells: List[int], potions: List[int], success: int) -> List[int]:
         n = len(potions)
-        res = []
-        memo = {}
+        potions.sort()
 
-        for spell in spells:
-            if spell in memo:
-                res.append(memo[spell])
-                continue
-
-            # potions * spell >= success
-            # potions >= (success + spell - 1) // spell
-            target = (success + spell - 1) // spell
+        def leftmost(spell):
             l, r = 0, n
-            # left-bounded search
             while l < r:
                 mid = l + (r - l) // 2
-                if potions[mid] < target:
-                    l = mid + 1
-                else:
+                if potions[mid] * spell >= success:
                     r = mid
-            memo[spell] = n - l if n > l else 0
-            res.append(memo[spell])
+                else:
+                    l = mid + 1
+            return l
 
+        res = []
+        for spell in spells:
+            if potions[0] * spell >= success:
+                res.append(n)
+                continue
+            idx = leftmost(spell)
+            res.append(n - idx)
         return res
+
