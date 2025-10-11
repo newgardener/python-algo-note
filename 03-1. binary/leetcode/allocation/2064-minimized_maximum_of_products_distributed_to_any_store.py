@@ -1,18 +1,24 @@
+"""
+given N is length of quantities and M is max(quantities),
+Time Complexity: O(NlogM)
+Space Complexity: O(1)
+"""
+
 def minimizedMaximum(n: int, quantities: list[int]) -> int:
     def can_distribute(max_q):
-        stores = 0
+        stores_needed = 0
         for q in quantities:
-            stores += (q + max_q - 1) // max_q
-        # there is a room to optimize max_q to be smaller
-        return stores > n
+            stores_needed += (q + max_q - 1) // max_q  # ceil(q / max_q)
+            if stores_needed > n:
+                return False
+        return stores_needed <= n
 
-    l, r = 1, max(quantities) + 1
+    l, r = 1, max(quantities)
     while l < r:
         mid = l + (r - l) // 2
-        # find a minimized q which is sufficient to distribute to n stores
-        # leftmost search to find a minimized q
         if can_distribute(mid):
-            l = mid + 1
-        else:
             r = mid
-    return l
+        else:
+            l = mid + 1
+
+
