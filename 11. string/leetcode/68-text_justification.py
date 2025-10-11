@@ -1,37 +1,51 @@
+"""
+Let N = number of words, L = average word length, M = maxWidth
+Time Complexity: O(N * L)
+- added to a sentence: O(1)
+- formatted in process_sentence: O(L)
+- total per word: O(L)
+- all words: O(N * L)
+at worst, L can be maxWidth, so O(N * M)
+
+Space Complexity: O(N * M) for the output
+"""
+
 def fullJustify(words: list[str], maxWidth: int) -> list[str]:
-    words = [(w, len(w)) for w in words]
-    res = []
-    line = []
-    width = 0
-    i = 0
-    while i < len(words):
-        w, w_len = words[i]
-        if width < maxWidth - w_len - len(words):
-            line.append(w)
-            width += w_len
-            i += 1
+    def process_sentence(sentence):
+        width = len(''.join(sentence))
+        space_needed = maxWidth - width
+        if len(sentence) == 1:
+            return sentence[0] + ' ' * space_needed
         else:
-            wcnt = len(line)
-            need = maxWidth - width
-            if wcnt == 1:
-                sentence = "".join(line) + " " * need
-            else:
-                space_btw_word = need // (wcnt - 1)
-                extra_space = need % (wcnt - 1)
-                sentence = ""
-                for j in range(wcnt):
-                    sentence += line[j]
-                    if j < wcnt - 1:
-                        sentence += " " * space_btw_word
-                        if j < extra_space:
-                            sentence += " "
-            res.append(sentence)
-            line = []
-            width = 0
+            gap = len(sentence) - 1
+            space, extra = divmod(space_needed, gap)
+            formatted = ''
+            for i, word in enumerate(sentence):
+                formatted += word
+                if i < len(sentence) - 1:
+                    formatted += ' ' * (space + (1 if i < extra else 0))
+            return formatted
 
-    if line:
-        lastline = " ".join(line)
-        spaces = maxWidth - len(lastline)
-        res.append(lastline + " " * spaces)
+    output = []
+    sentence = []
+    acc = 0
+    for i, word in enumerate(words):
+        space_needed = 1 if sentence else 0
+        if acc + space_needed + len(word) <= maxWidth:
+            acc += len(word)
+            if len(sentence) > 0:
+                acc += 1
+            sentence.append(word)
+        else:
+            # process sentence first
+            output.append(process_sentence(sentence))
+            # and then add the next sentence word
+            sentence = [word]
+            acc = len(word)
 
-    return res
+    # process the last line to be left-justified
+    last_line = ' '.join(sentence)
+    last_line += ' ' * (maxWidth - len(last_line))
+    output.append(last_line)
+    return output
+
